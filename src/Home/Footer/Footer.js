@@ -1,7 +1,7 @@
-// TODO:
-// Version info
 const Footer = () => {
-  return <div className="Footer">Footer Page</div>
+  return <div className="Footer">
+      Footer Page (version info, Terms of service?)
+    </div>
 }
 
 export default Footer

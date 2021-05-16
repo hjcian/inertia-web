@@ -4,8 +4,7 @@ import DataImporter from './DataImporter/DataImporter'
 // deal with switch logic
 const Content = () => {
     return <div className="Content">
-        Content Page
-
+        Content Page (switch by data imported or not)
         <DataImporter />
         <Dashboard />
         </div>

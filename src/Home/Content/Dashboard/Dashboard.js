@@ -1,10 +1,10 @@
 const Dashboard = () => {
     return <div className="Dashboard">
         <div>
-            Sidebar
+            Sidebar ([React-Router] Links)
         </div>
         <div>
-            Displayed Component
+            Displayed Component ([React-Router] Routes to child components)
         </div>
     </div>
   }
