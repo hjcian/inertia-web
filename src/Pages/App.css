@@ -15,6 +15,26 @@
     border: 1px solid;
 }
 
+.Header {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.HeaderLeft, .HeaderRight {
+    border: 1px solid ;
+    display: flex;
+    align-items: center;
+}
+
+.HeaderRight {
+    justify-content: flex-end;
+}
+
+.HeaderRightItem {
+    margin-right: 1em;
+    margin-left: 1em;
+}
+
 .Content {
     min-height: 30em;
 }

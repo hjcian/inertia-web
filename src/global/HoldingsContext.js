@@ -1,10 +1,10 @@
 import { createContext, useContext, useState } from 'react'
 
-const HoldingsContext = createContext()
+const holdingsContext = createContext()
 
 const useProvideHoldings = () => {
   const [holdings, setHoldings] = useState(null)
-  const updateHoldings = (holdings, cb) => {
+  const updateHoldings = (holdings, cb = () => {}) => {
     setHoldings(holdings)
     cb()
   }
@@ -14,12 +14,12 @@ const useProvideHoldings = () => {
 export const ProvideHoldings = ({ children }) => {
   const holdings = useProvideHoldings()
   return (
-    <HoldingsContext.Provider value={holdings}>
+    <holdingsContext.Provider value={holdings}>
       {children}
-    </HoldingsContext.Provider>
+    </holdingsContext.Provider>
   )
 }
 
 export const useHoldings = () => {
-  return useContext(HoldingsContext)
+  return useContext(holdingsContext)
 }
