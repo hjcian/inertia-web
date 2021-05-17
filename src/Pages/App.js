@@ -1,14 +1,16 @@
 import Header from './Header/Header'
 import Footer from './Footer/Footer'
 import Content from './Content/Content'
-
+import { ProvideHoldings } from '../global/HoldingsContext'
 import './App.css'
 
 function App () {
   return (
-    <div className="App">
+    <div className='App'>
       <Header />
-      <Content />
+      <ProvideHoldings>
+        <Content />
+      </ProvideHoldings>
       <Footer />
     </div>
   )
