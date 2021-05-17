@@ -1,4 +1,6 @@
-import { FaExternalLinkAlt, FaLanguage } from 'react-icons/fa'
+import { FaExternalLinkAlt } from 'react-icons/fa'
+import { IoLanguageOutline } from 'react-icons/io5'
+
 import { useLang, supportedLangs } from '../../global/LanguageContext'
 
 const Header = () => {
@@ -15,13 +17,13 @@ const Header = () => {
       </div>
       <div className='HeaderRight'>
         <div className='HeaderRightItem'>
+          <IoLanguageOutline size='1.3em' />
           <select onChange={handleLangSelect}>
             {supportedLangs.map(({ code, text }) =>
               <option key={code} value={code}>
                 {text}
               </option>)}
           </select>
-          <FaLanguage size='1.5em' />
         </div>
         <div className='HeaderRightItem'>
           <a
