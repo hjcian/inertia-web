@@ -20,7 +20,7 @@ const NavSidebar = () => {
 }
 
 const Content = () => {
-  const { holdings } = useHoldings()
+  const { value: holdings } = useHoldings()
   return (
     <div className='Content'>
       {

@@ -1,4 +1,7 @@
 # InertIA-web
+![Netlify Status](https://api.netlify.com/api/v1/badges/e912a2f1-9929-40ed-87a0-5216d6b79f59/deploy-status)
+
+try this to save your time 👉 https://inertia-web.netlify.app/
 
 ## ⚛️ Used techniques
 - react.js

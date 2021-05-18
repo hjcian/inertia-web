@@ -47,5 +47,6 @@
     "bootstrap": "^4.6.0",
     "react-bootstrap": "^1.6.0",
     "semantic-ui-less": "^2.4.1"
-  }
+  },
+  "type": "module"
 }

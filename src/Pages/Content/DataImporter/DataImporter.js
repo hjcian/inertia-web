@@ -1,11 +1,12 @@
-import React, { useCallback } from 'react'
+import { useCallback } from 'react'
 import { useDropzone } from 'react-dropzone'
-
 import { useHoldings } from '../../../global/context/holdings'
+
+import { ParseFromString } from '../../../utils/ft'
 
 import './DataImporter.css'
 
-function FileDropzone () {
+function FileDropzone ({ updateHoldings }) {
   const onDrop = useCallback(acceptedFiles => {
     // Do something with the files
     console.log(acceptedFiles)
@@ -15,11 +16,11 @@ function FileDropzone () {
       reader.onabort = () => console.log('file reading was aborted')
       reader.onerror = () => console.log('file reading has failed')
       reader.onload = () => {
-      // Do whatever you want with the file contents
-        const binaryStr = reader.result
-        console.log(binaryStr)
+        const string = reader.result
+        const calc = ParseFromString(string)
+        updateHoldings(calc)
       }
-      reader.readAsArrayBuffer(file)
+      reader.readAsText(file)
     })
   }, [])
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
@@ -31,7 +32,7 @@ function FileDropzone () {
         {
           isDragActive
             ? 'Drop the files here ...'
-            : "Drag 'n' drop some files here, or click to select files"
+            : 'Drag and drop some files here, or click to select file'
         }
       </p>
     </div>
@@ -39,20 +40,10 @@ function FileDropzone () {
 }
 
 const DataImporter = () => {
-  const { updateHoldings } = useHoldings()
+  const { updateValue: updateHoldings } = useHoldings()
   return (
     <div>
-      DataImporter Page (csv importer)
-      <button onClick={() => {
-        updateHoldings('data imported', () => {
-          console.log('update OK')
-        })
-      }}
-      > Import Data
-      </button>
-      <div>
-        <FileDropzone />
-      </div>
+      <FileDropzone updateHoldings={updateHoldings} />
     </div>
   )
 }

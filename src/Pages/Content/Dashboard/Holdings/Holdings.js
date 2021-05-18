@@ -1,30 +1,31 @@
-const DataTable = () => {
+import { useHoldings } from '../../../../global/context/holdings'
+
+const HoldingRow = ({ symbol, shares, totalCost, unitCost, price, marketValue }) => {
+  return (
+    <tr>
+      <td>{symbol}<div>{shares}</div></td>
+      <td>{totalCost}</td>
+      <td>{unitCost}</td>
+      <td>{price}</td>
+      <td>{marketValue}</td>
+    </tr>
+  )
+}
+
+const HoldingTable = ({ holdings }) => {
   return (
     <table>
       <thead>
         <tr>
           <th>Position</th>
-          <th>Unit Cost</th>
           <th>Total Cost</th>
+          <th>Unit Cost</th>
           <th>Price</th>
           <th>Market Value</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>VT/100</td>
-          <td>70</td>
-          <td>7000</td>
-          <td>100</td>
-          <td>10000</td>
-        </tr>
-        <tr>
-          <td>VT/100</td>
-          <td>70</td>
-          <td>7000</td>
-          <td>100</td>
-          <td>10000</td>
-        </tr>
+        {holdings.map((holding) => <HoldingRow key={holding.symbol} {...holding} />)}
       </tbody>
     </table>
   )
@@ -40,18 +41,23 @@ const SummaryItem = (props) => {
 }
 
 const Holdings = () => {
-  const fakeValues = [
-    { title: 'Total Cost', value: 7000 },
-    { title: 'Total Market Value', value: 10000 },
-    { title: 'Simple Return', value: '30%' },
-    { title: 'Annual Return', value: '7%' }
+  const { value: calc } = useHoldings()
+  const holdings = calc.CurrentHoldings()
+  const summary = calc.Summary()
+  console.log(holdings)
+  console.log(summary)
+  const summaryItems = [
+    { title: 'Total Cost', value: summary.totalCost },
+    { title: 'Total Market Value', value: summary.totalMarketValue },
+    { title: 'Simple Return', value: summary.simpleReturn },
+    { title: 'Annual Return', value: summary.annualReturn }
   ]
   return (
     <div>
       <h4>Holdings</h4>
-      <DataTable />
+      <HoldingTable holdings={holdings} />
       <h4>Summary</h4>
-      {fakeValues.map(({ title, value }) => <SummaryItem key={title} title={title} value={value} />)}
+      {summaryItems.map(({ title, value }) => <SummaryItem key={title} title={title} value={value} />)}
     </div>
   )
 }
