@@ -22,7 +22,8 @@ function FileDropzone ({ updateHoldings }) {
       }
       reader.readAsText(file)
     })
-  }, [])
+  }, [updateHoldings])
+
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop })
 
   return (
