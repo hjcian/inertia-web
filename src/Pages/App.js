@@ -1,8 +1,8 @@
 import Header from './Header/Header'
 import Footer from './Footer/Footer'
 import Content from './Content/Content'
-import { ProvideHoldings } from '../global/HoldingsContext'
-import { ProvideLang } from '../global/LanguageContext'
+import { ProvideHoldings } from '../global/context/holdings'
+import { ProvideLang } from '../global/context/language'
 import './App.css'
 
 import {

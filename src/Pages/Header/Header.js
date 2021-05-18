@@ -1,7 +1,7 @@
 import { FaExternalLinkAlt } from 'react-icons/fa'
 import { IoLanguageOutline } from 'react-icons/io5'
 
-import { useLang, supportedLangs } from '../../global/LanguageContext'
+import { useLang, supportedLangs } from '../../global/context/language'
 
 const Header = () => {
   const { lang, switchLang } = useLang()

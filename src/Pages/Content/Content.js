@@ -7,7 +7,7 @@ import {
 import Dashboard from './Dashboard/Dashboard'
 import DataImporter from './DataImporter/DataImporter'
 import About from './About'
-import { useHoldings } from '../../global/HoldingsContext'
+import { useHoldings } from '../../global/context/holdings'
 import './Content.css'
 
 const NavSidebar = () => {
