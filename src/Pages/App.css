@@ -12,16 +12,16 @@
     min-height: 3em;
     min-width: 40em;
     max-width: 1170px;
-    border: 1px solid;
+    border: 1px dashed;
 }
 
 .Header {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 4fr;
 }
 
 .HeaderLeft, .HeaderRight {
-    border: 1px solid ;
+    border: 1px dashed ;
     display: flex;
     align-items: center;
 }
@@ -37,4 +37,20 @@
 
 .Content {
     min-height: 30em;
+    display: flex;
+}
+
+.Footer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.FooterTop {
+    display: flex;
+}
+
+.FooterItem {
+    border: 1px dashed;
+    margin: 0 1em;
 }

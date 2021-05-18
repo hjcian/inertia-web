@@ -5,15 +5,21 @@ import { ProvideHoldings } from '../global/HoldingsContext'
 import { ProvideLang } from '../global/LanguageContext'
 import './App.css'
 
+import {
+  BrowserRouter
+} from 'react-router-dom'
+
 function App () {
   return (
     <div className='App'>
       <ProvideLang>
-        <Header />
-        <ProvideHoldings>
-          <Content />
-        </ProvideHoldings>
-        <Footer />
+        <BrowserRouter>
+          <Header />
+          <ProvideHoldings>
+            <Content />
+          </ProvideHoldings>
+          <Footer />
+        </BrowserRouter>
       </ProvideLang>
     </div>
   )

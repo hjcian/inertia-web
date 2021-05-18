@@ -20,15 +20,12 @@ export const supportedLangs = [
 const langs = {
   [en]: {
     Header: {
-      left: 'InertIA - help you doing investing more lazy'
-    },
-    Holdings: {
-
+      brand: 'InertIA'
     }
   },
   [zhtw]: {
     Header: {
-      left: 'InertIA - 幫助你用更懶的方式做指數投資'
+      brand: 'InertIA'
     }
   }
 }

@@ -2,15 +2,8 @@
     display: flex;
 }
 
-.NavSidebar {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    min-width: 20%;
-}
-
 table, th, td {
-    border: 1px solid ;
+    border: 1px dashed ;
 }
 
 .SummaryItem {
