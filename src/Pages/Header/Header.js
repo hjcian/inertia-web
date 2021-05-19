@@ -2,6 +2,7 @@ import { FaExternalLinkAlt } from 'react-icons/fa'
 import { IoLanguageOutline } from 'react-icons/io5'
 
 import { useLang, supportedLangs } from '../../global/context/language'
+import logo from '../../images/logo.png'
 
 const Header = () => {
   const { lang, switchLang } = useLang()
@@ -12,7 +13,7 @@ const Header = () => {
     <div className='Header'>
       <div className='HeaderLeft'>
         <a className='HeaderLeftBrand' href='/'>
-          {Header.brand}
+          <img className='HeaderLeftBrandImage' src={logo} alt={Header.brand} />
         </a>
       </div>
       <div className='HeaderRight'>
