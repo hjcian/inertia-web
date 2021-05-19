@@ -5,9 +5,9 @@ try this to save your time 👉 https://inertia-web.netlify.app/
 
 ## ⭐ 功能
 - 支援 Firstade 交易紀錄格式
-- 計算各目前持股的股數、單位成本及總成本
-- 自動抓取各目前持股最新的報價並計算市場價值
-- 計算簡單報酬率及年化報酬率
+- 計算各目前持股的**股數(*shares*)**、**單位成本(*unit cost*)** 及 **總成本(*total cost*)**
+- 自動抓取各目前持股最新的**報價(*price*)**，並計算各目前持股的**市場價值(*market value*)**
+- 計算投資組合的**簡單報酬率(*simple return*)**及**年化報酬率(*annual return*)**
 
 ## ⚛️ 使用的技術/函式庫
 - react.js
@@ -16,7 +16,7 @@ try this to save your time 👉 https://inertia-web.netlify.app/
 
 ## 👺 Todo
 - Features
-  - 計算各目前持股的配置比例，並提供再平衡操作
+  - 計算各目前持股的配置比例，並提供再平衡操作
   - support other securities' exported data format (TD Ameritrade, Interactive Brokers (IB), ...etc.)
 - Improvements
   - pass validation function to `react-dropzone` as callback
