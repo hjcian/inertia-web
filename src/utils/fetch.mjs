@@ -4,7 +4,7 @@ const backend = 'https://rocky-chamber-20950.herokuapp.com/https://query1.financ
 export const FetchPrices = async (symbols) => {
   const resp = await fetch(`${backend}${symbols.join(',')}`,
     {
-      origin: 'localhost:3000'
+      origin: 'https://inertia-web.netlify.app'
     }
   )
   const data = await resp.json()
