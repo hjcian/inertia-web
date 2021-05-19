@@ -4,3 +4,8 @@
     justify-content: flex-start;
     min-width: 20%;
 }
+
+.DataImporterDropzone {
+    width: 80%;
+    height: 50%;
+}

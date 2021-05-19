@@ -22,7 +22,7 @@ const NavSidebar = () => {
 const Content = () => {
   const { value: holdings } = useHoldings()
   return (
-    <div className='Content'>
+    <div className={holdings ? 'ContentBase ContentWithData' : 'ContentBase ContentWithoutData'}>
       {
         holdings !== null
           ? <NavSidebar />

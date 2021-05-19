@@ -21,11 +21,19 @@ const langs = {
   [en]: {
     Header: {
       brand: 'InertIA'
+    },
+    Content: {
+      dropzoneDragActive: 'Drop the transaction CSV file here ...',
+      dropzoneDragInactive: 'Drag and drop the transaction CSV file here, or click to select from folder.'
     }
   },
   [zhtw]: {
     Header: {
       brand: 'InertIA'
+    },
+    Content: {
+      dropzoneDragActive: '放開你的交易紀錄 CSV 檔...',
+      dropzoneDragInactive: '拖放你的交易紀錄 CSV 檔到這裡，或點擊此區塊從資料夾中選取'
     }
   }
 }

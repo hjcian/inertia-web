@@ -16,3 +16,7 @@ try this to save your time 👉 https://inertia-web.netlify.app/
   - use client side cache (cookie?) for caching price data :face
   - use specific REST API to get price data
   - use in-memory cache for price data
+
+## Resources to build this site
+- https://www.freelogodesign.org/
+-

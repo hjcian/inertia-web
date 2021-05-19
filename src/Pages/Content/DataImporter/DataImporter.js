@@ -1,41 +1,42 @@
-import { useCallback } from 'react'
+import { useCallback, useMemo } from 'react'
 import { useDropzone } from 'react-dropzone'
 import { useHoldings } from '../../../global/context/holdings'
+import { useLang } from '../../../global/context/language'
 
 import { ParseFromString } from '../../../utils/ft'
 import { FetchPrices } from '../../../utils/fetch'
 
-import './DataImporter.css'
+const baseStyle = {
+  flex: 1,
+  display: 'flex',
+  flexDirection: 'column',
+  alignItems: 'center',
+  padding: '20px',
+  borderWidth: 2,
+  borderRadius: 2,
+  borderColor: '#eeeeee',
+  borderStyle: 'dashed',
+  backgroundColor: '#fafafa',
+  color: '#bdbdbd',
+  outline: 'none',
+  transition: 'border .24s ease-in-out'
+}
 
-// const fakeData = [
-//   {
-//     symbol: 'VT',
-//     price: 100
-//   },
-//   {
-//     symbol: 'BND',
-//     price: 85
-//   },
-//   {
-//     symbol: 'BNDX',
-//     price: 56
-//   },
-//   {
-//     symbol: 'VNQ',
-//     price: 97.2
-//   },
-//   {
-//     symbol: 'IJS',
-//     price: 104.66
-//   },
-//   {
-//     symbol: 'IUSV',
-//     price: 72.48
-//   }
-// ]
+const activeStyle = {
+  borderColor: '#2196f3'
+}
+
+const acceptStyle = {
+  borderColor: '#00e676'
+}
+
+const rejectStyle = {
+  borderColor: '#ff1744'
+}
 
 const FileDropzone = () => {
   const { updateValue: updateHoldings } = useHoldings()
+  const { lang } = useLang()
 
   const onDrop = useCallback(acceptedFiles => {
     const file = acceptedFiles[0] // set {multiple: false} to accept only one file
@@ -67,23 +68,36 @@ const FileDropzone = () => {
     reader.readAsText(file)
   }, [updateHoldings])
 
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({
+  const { getRootProps, getInputProps, isDragActive, isDragAccept, isDragReject } = useDropzone({
     onDrop,
     multiple: false,
     // https://github.com/react-dropzone/react-dropzone/issues/276
     accept: ['text/csv', 'text/plain', 'application/vnd.ms-excel']
   })
 
+  const style = useMemo(() => ({
+    ...baseStyle,
+    ...(isDragActive ? activeStyle : {}),
+    ...(isDragAccept ? acceptStyle : {}),
+    ...(isDragReject ? rejectStyle : {})
+  }), [
+    isDragActive,
+    isDragReject,
+    isDragAccept
+  ])
+
   return (
-    <div {...getRootProps()}>
-      <input {...getInputProps()} />
-      <p className='DataImporterDropzone'>
-        {
+    <div className='DataImporterDropzone'>
+      <div {...getRootProps({ style })}>
+        <input {...getInputProps()} />
+        <p>
+          {
           isDragActive
-            ? 'Drop the files here ...'
-            : 'Drag and drop some files here, or click to select file'
+            ? lang.Content.dropzoneDragActive
+            : lang.Content.dropzoneDragInactive
         }
-      </p>
+        </p>
+      </div>
     </div>
   )
 }
