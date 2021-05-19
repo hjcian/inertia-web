@@ -1,4 +1,6 @@
 
+import xirr from 'xirr'
+
 const headRow = 'Symbol,Quantity,Price,Action,Description,TradeDate,SettledDate,Interest,Amount,Commission,Fee,CUSIP,RecordType'
 const numField = 13
 const SymbolIdx = 0
@@ -15,7 +17,7 @@ const FeeIdx = 10
 const CUSIPIdx = 11
 const RecordTypeIdx = 12
 
-const roundNum = (num, digit = 0) => {
+const round = (num, digit = 0) => {
   const decimalPoints = Math.pow(10, digit)
   return Math.round(num * decimalPoints) / decimalPoints
 }
@@ -55,37 +57,70 @@ class Row {
 class Calculator {
   constructor (rows) {
     this.rows = rows
-    this.totalCost = null
-    this.totalMarketValue = null
-    this.annualReturn = null
+    this.symbolMap = this.genSymbolMap()
   }
 
-  Summary () {
-    console.log('should implement Summary')
-    return null
+  genSymbolMap () {
+    console.log('should implement')
+    return new Map([])
+  }
+
+  computeTotalCost () {
+    console.log('should implement')
+    return 0
+  }
+
+  computeMarketValue () {
+    console.log('should implement')
+    return 0
+  }
+
+  computeIRR (totalMarketValue) {
+    console.log('should implement')
+    return 0
   }
 
   CurrentHoldings () {
-    console.log('should implement CurrentHoldings')
-    return null
+    const entries = [...this.symbolMap.entries()]
+    const currentHoldings = entries.map(entry => {
+      return {
+        symbol: entry[0],
+        ...entry[1]
+      }
+    })
+    return currentHoldings
+  }
+
+  Summary () {
+    const totalCost = this.computeTotalCost()
+    const totalMarketValue = this.computeMarketValue()
+    const simpleReturn = (totalMarketValue - totalCost) / totalCost
+    const annualReturn = this.computeIRR(totalMarketValue)
+    return {
+      totalCost,
+      totalMarketValue,
+      simpleReturn,
+      annualReturn
+    }
+  }
+
+  UpdatePrices (prices) {
+    prices.forEach(({ symbol, price }) => {
+      const symbolObj = this.symbolMap.get(symbol)
+      if (symbolObj) {
+        symbolObj.price = price
+        symbolObj.marketValue = price * symbolObj.shares
+      }
+    })
+  }
+
+  GetSymbols () {
+    return [...this.symbolMap.keys()]
   }
 }
 
 class FTCalculator extends Calculator {
-  Summary () {
-    if (this.totalCost === null) {
-      const holdings = this.CurrentHoldings()
-      this.totalCost = Math.abs(holdings.reduce((accumulator, holding) => accumulator + holding.totalCost, 0))
-    }
-    return {
-      totalCost: this.totalCost,
-      totalMarketValue: this.totalMarketValue,
-      simpleReturn: (this.totalMarketValue - this.totalCost) / this.totalCost,
-      annualReturn: this.annualReturn
-    }
-  }
-
-  CurrentHoldings () {
+  genSymbolMap () {
     const symbolMap = new Map(
       this.rows
         .map(row => {
@@ -118,20 +153,40 @@ class FTCalculator extends Calculator {
         return
       }
 
-      symbolObj.shares = roundNum(symbolObj.shares, 5)
-      symbolObj.totalCost = roundNum(symbolObj.totalCost, 5)
-      symbolObj.unitCost = roundNum(symbolObj.totalCost / symbolObj.shares, 5)
+      symbolObj.shares = round(symbolObj.shares, 5)
+      symbolObj.totalCost = Math.abs(round(symbolObj.totalCost, 5))
+      symbolObj.unitCost = Math.abs(round(symbolObj.totalCost / symbolObj.shares, 5))
     })
 
-    const entries = [...symbolMap.entries()]
-    const ret = entries.map(entry => {
-      return {
-        symbol: entry[0],
-        ...entry[1]
-      }
-    })
+    return symbolMap
+  }
 
-    return ret
+  computeTotalCost () {
+    const totalCost = this.rows.reduce((accumulator, row) =>
+      row.RecordType === 'Trade'
+        ? accumulator + row.Amount
+        : accumulator, 0)
+    return round(Math.abs(totalCost), 2)
+  }
+
+  computeMarketValue () {
+    const entries = [...this.symbolMap.entries()]
+    const totalMarketValue = entries.reduce((accumulator, entry) => accumulator + entry[1].marketValue, 0)
+    return round(totalMarketValue, 2)
+  }
+
+  computeIRR (totalMarketValue) {
+    if (totalMarketValue === 0) {
+      return 0
+    }
+    // i.e. Annual Return
+    const transactions = [...this.rows
+      .filter(row => row.RecordType === 'Trade')
+      .map(row => {
+        return { amount: row.Amount, when: new Date(row.TradeDate) }
+      }), { amount: totalMarketValue, when: new Date() }]
+    const rate = xirr(transactions, { guess: 0.1 })
+    return rate
   }
 }
 
@@ -146,7 +201,7 @@ export const ParseFromString = (string) => {
     if (idx === 0) {
       return null
     }
-    const columns = line.split(',')
+    const columns = line.trim().split(',')
     const row = new Row(
       columns[SymbolIdx],
       columns[QuantityIdx],

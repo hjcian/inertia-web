@@ -41,9 +41,8 @@ const SummaryItem = (props) => {
 }
 
 const Holdings = () => {
-  const { value: calc } = useHoldings()
-  const holdings = calc.CurrentHoldings()
-  const summary = calc.Summary()
+  const { value } = useHoldings()
+  const { holdings, summary } = value
   console.log(holdings)
   console.log(summary)
   const summaryItems = [

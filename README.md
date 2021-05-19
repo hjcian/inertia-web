@@ -12,6 +12,7 @@ try this to save your time 👉 https://inertia-web.netlify.app/
 - Features
   - support other securities' exported data format (TD Ameritrade, Interactive Brokers (IB), ...etc.)
 - Improvements
+  - pass validation function to `react-dropzone` as callback
   - use client side cache (cookie?) for caching price data :face
   - use specific REST API to get price data
   - use in-memory cache for price data
