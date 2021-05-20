@@ -39,9 +39,10 @@ html, body {
 }
 
 .HeaderRightItem {
-    margin-right: 1em;
-    margin-left: 1em;
+    margin-right: 1rem;
+    margin-left: 1rem;
 }
+
 
 .ContentWithoutData {
     min-height: 30em;

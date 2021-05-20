@@ -4,8 +4,8 @@ const en = 'en'
 const zhtw = 'zh-TW'
 
 export const supportedLangs = [
-  { code: en, text: 'English' },
-  { code: zhtw, text: '繁體中文' }
+  { code: zhtw, text: '中文' },
+  { code: en, text: 'English' }
 ]
 
 // language data format
@@ -19,21 +19,59 @@ export const supportedLangs = [
 
 const langs = {
   [en]: {
+    Code: en,
     Header: {
       brand: 'InertIA'
     },
     Content: {
       dropzoneDragActive: 'Drop the transaction CSV file here ...',
       dropzoneDragInactive: 'Drag and drop the transaction CSV file here, or click to select from folder.'
+    },
+    Holdings: {
+      holdingsPart: {
+        title: 'Holdings',
+        position: 'Position',
+        totalCost: 'Total Cost',
+        unitCost: 'Unit Cost',
+        price: 'Price',
+        marketValue: 'Market Value',
+        sharesText: 'shares'
+      },
+      summaryPart: {
+        title: 'Summary',
+        totalCost: 'Total Cost',
+        totalMarketValue: 'Total Market Value',
+        simpleReturn: 'Simple Return',
+        annualReturn: 'Annual Return'
+      }
     }
   },
   [zhtw]: {
+    Code: zhtw,
     Header: {
       brand: 'InertIA'
     },
     Content: {
       dropzoneDragActive: '放開你的交易紀錄 CSV 檔...',
-      dropzoneDragInactive: '拖放你的交易紀錄 CSV 檔到這裡，或點擊此區塊從資料夾中選取'
+      dropzoneDragInactive: '拖放你的交易紀錄(csv file)到這裡，或點擊此區塊從資料夾中選取'
+    },
+    Holdings: {
+      holdingsPart: {
+        title: '目前持股',
+        position: '部位',
+        totalCost: '總成本',
+        unitCost: '單位成本',
+        price: '價格',
+        marketValue: '市場價值',
+        sharesText: '股'
+      },
+      summaryPart: {
+        title: '投資組合摘要',
+        totalCost: '總成本',
+        totalMarketValue: '總市場價值',
+        simpleReturn: '簡單報酬率',
+        annualReturn: '年化報酬率'
+      }
     }
   }
 }
@@ -41,7 +79,7 @@ const langs = {
 const langContext = createContext()
 
 const useProvideLang = () => {
-  const [lang, setLang] = useState(langs.en)
+  const [lang, setLang] = useState(langs[zhtw])
   const switchLang = (lang, cb = () => {}) => {
     setLang(langs[lang])
     cb()

@@ -2,10 +2,6 @@
     display: flex;
 }
 
-table, th, td {
-    border: 1px dashed ;
-}
-
 .SummaryItem {
     display: flex;
     justify-content: flex-start;
@@ -13,4 +9,8 @@ table, th, td {
 
 .SummaryItemTitle {
     min-width: 10em;
+}
+
+.PositionShares {
+    font-size: 0.6rem;
 }

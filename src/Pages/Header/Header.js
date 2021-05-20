@@ -1,14 +1,13 @@
 import { FaExternalLinkAlt } from 'react-icons/fa'
-import { IoLanguageOutline } from 'react-icons/io5'
+import { Select, MenuItem } from '@material-ui/core'
 
 import { useLang, supportedLangs } from '../../global/context/language'
 import logo from '../../images/logo.png'
 
 const Header = () => {
   const { lang, switchLang } = useLang()
-  const { Header } = lang
+  const { Header, Code } = lang
   const handleLangChange = e => switchLang(e.target.value)
-
   return (
     <div className='Header'>
       <div className='HeaderLeft'>
@@ -17,15 +16,16 @@ const Header = () => {
         </a>
       </div>
       <div className='HeaderRight'>
-        <div className='HeaderRightItem' />
         <div className='HeaderRightItem'>
-          <IoLanguageOutline size='1.3em' />
-          <select onChange={handleLangChange}>
+          <Select
+            value={Code}
+            onChange={handleLangChange}
+          >
             {supportedLangs.map(({ code, text }) =>
-              <option key={code} value={code}>
+              <MenuItem key={code} value={code}>
                 {text}
-              </option>)}
-          </select>
+              </MenuItem>)}
+          </Select>
         </div>
         <div className='HeaderRightItem'>
           <a

@@ -14,6 +14,7 @@ try this 👉 https://inertia-web.netlify.app/
 - react.js
 - react-context
 - react-router
+- material-ui
 
 ## 👺 Todo
 - Features

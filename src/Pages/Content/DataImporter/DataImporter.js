@@ -52,6 +52,8 @@ const FileDropzone = () => {
       FetchPrices(calc.GetSymbols())
         .then(results => {
           calc.UpdatePrices(results)
+          console.log(JSON.stringify(calc.CurrentHoldings()))
+          console.log(JSON.stringify(calc.Summary()))
           updateHoldings({
             holdings: calc.CurrentHoldings(),
             summary: calc.Summary()
