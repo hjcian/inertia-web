@@ -47,9 +47,9 @@ const Header = () => {
   const { Header, Code } = lang
   const handleLangChange = e => switchLang(e.target.value)
   return (
-    <div>
+    <>
       <AppBar className={classes.appBar}>
-        <Toolbar className={classes.appBarWrapper}>
+        <Toolbar className={classes.appBarWrapper} variant='dense'>
           <div className={classes.appBarTitle}>
             <a href='/'>
               <img className={classes.brandImage} src={logo} alt={Header.brand} />
@@ -79,10 +79,11 @@ const Header = () => {
             >
               <GitHubIcon className={classes.githubIcon} />
             </IconButton>
-          </Tooltip>
+          </Tooltip> {/* need fixed placement: https://material-ui.com/components/app-bar/#fixed-placement */}
         </Toolbar>
       </AppBar>
-    </div>
+      <Toolbar />
+    </>
   )
 }
 
