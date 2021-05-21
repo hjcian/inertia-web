@@ -1,20 +1,16 @@
 import { Typography, Card, CardContent } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import { useLang } from '../../../../global/context/language'
-import { Currency, Rate } from './NumberFormatter'
+import { formatType, FormatNumber, withFetching } from './common'
 
-const currency = 'currency'
-const rate = 'rate'
-
-const SummaryItem = ({ classes, title, value, type }) => {
+const SummaryCard = ({ classes, title, value, type, fetching }) => {
+  const FetchingInfo = withFetching(Typography, fetching)
   return (
     <Card>
       <CardContent className={classes.cardcontent}>
-        <Typography variant='body2' color='textPrimary'>
-          {type === currency
-            ? <Currency number={value} />
-            : <Rate number={value} />}
-        </Typography>
+        <FetchingInfo variant='body2' color='textPrimary'>
+          <FormatNumber type={type} value={value} />
+        </FetchingInfo>
         <Typography variant='caption' color='textSecondary' component='p'>{title}</Typography>
       </CardContent>
     </Card>
@@ -30,23 +26,21 @@ const itemStyles = {
   }
 }
 
-const StyledSummaryItem = withStyles(itemStyles)(SummaryItem)
+const StyledSummaryCard = withStyles(itemStyles)(SummaryCard)
 
-const InvestmentOverview = ({ summary }) => {
+const InvestmentOverview = ({ summary, fetching }) => {
   const { lang } = useLang()
   const { summaryPart } = lang.Holdings
-  const summaryItems = [
-    { title: summaryPart.totalCost, value: summary.totalCost, type: currency },
-    { title: summaryPart.totalMarketValue, value: summary.totalMarketValue, type: currency },
-    { title: summaryPart.simpleReturn, value: summary.simpleReturn, type: rate },
-    { title: summaryPart.annualReturn, value: summary.annualReturn, type: rate }
+  const items = [
+    { title: summaryPart.totalCost, value: summary.totalCost, type: formatType.currency, fetching: false },
+    { title: summaryPart.totalMarketValue, value: summary.totalMarketValue, type: formatType.currency, fetching },
+    { title: summaryPart.simpleReturn, value: summary.simpleReturn, type: formatType.rate, fetching },
+    { title: summaryPart.annualReturn, value: summary.annualReturn, type: formatType.rate, fetching }
   ]
   return (
-    <>
-      <div className='InvestmentOverview'>
-        {summaryItems.map((props) => <StyledSummaryItem key={props.title} {...props} />)}
-      </div>
-    </>
+    <div className='InvestmentOverview'>
+      {items.map((item) => <StyledSummaryCard key={item.title} {...item} />)}
+    </div>
   )
 }
 

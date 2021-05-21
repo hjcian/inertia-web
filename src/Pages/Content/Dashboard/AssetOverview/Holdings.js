@@ -1,11 +1,10 @@
 import {
-  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper,
-  CircularProgress, Typography
+  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography
 } from '@material-ui/core'
 
 import { withStyles } from '@material-ui/core/styles'
 import { useLang } from '../../../../global/context/language'
-import { Currency } from './NumberFormatter'
+import { withFetching, Currency } from './common'
 
 const StyledTableCell = withStyles((theme) => ({
   root: {
@@ -13,9 +12,10 @@ const StyledTableCell = withStyles((theme) => ({
   }
 }))(TableCell)
 
-const HoldingRow = ({ symbol, shares, totalCost, unitCost, price, marketValue }) => {
+const HoldingRow = ({ symbol, shares, totalCost, unitCost, price, marketValue, fetching }) => {
   const { lang } = useLang()
   const { holdingsPart } = lang.Holdings
+  const FetchingCurrency = withFetching(Currency, fetching)
   return (
     <TableRow key={symbol}>
       <StyledTableCell align='left'>
@@ -24,17 +24,13 @@ const HoldingRow = ({ symbol, shares, totalCost, unitCost, price, marketValue })
       </StyledTableCell>
       <StyledTableCell align='right'><Currency number={totalCost} /></StyledTableCell>
       <StyledTableCell align='right'><Currency number={unitCost} /></StyledTableCell>
-      <StyledTableCell align='right'>
-        {price > 0 ? <Currency number={price} /> : <CircularProgress size='1rem' thickness={6} />}
-      </StyledTableCell>
-      <StyledTableCell align='right'>
-        {marketValue > 0 ? <Currency number={marketValue} /> : <CircularProgress size='1rem' thickness={6} />}
-      </StyledTableCell>
+      <StyledTableCell align='right'><FetchingCurrency number={price} /></StyledTableCell>
+      <StyledTableCell align='right'><FetchingCurrency number={marketValue} /></StyledTableCell>
     </TableRow>
   )
 }
 
-const Holding = ({ holdings }) => {
+const Holding = ({ holdings, fetching }) => {
   const { lang } = useLang()
   const { holdingsPart } = lang.Holdings
 
@@ -55,7 +51,7 @@ const Holding = ({ holdings }) => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {holdings.map((holding) => <HoldingRow key={holding.symbol} {...holding} />)}
+          {holdings.map((holding) => <HoldingRow key={holding.symbol} {...holding} fetching={fetching} />)}
         </TableBody>
       </Table>
     </TableContainer>

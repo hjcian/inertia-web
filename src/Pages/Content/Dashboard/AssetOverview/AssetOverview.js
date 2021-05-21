@@ -8,17 +8,17 @@ import { useLang } from '../../../../global/context/language'
 
 const AssetOverview = () => {
   const { value } = useHoldings()
-  const { holdings, summary } = value
+  const { holdings, summary, fetching } = value
   const { lang } = useLang()
   const { assetOverview } = lang.Content
   return (
     <div className='AssetOverview'>
       <Typography variant='subtitle1' color='textSecondary'>{assetOverview}</Typography>
       <div className='AssetOverviewItem'>
-        <InvestmentOverview summary={summary} />
+        <InvestmentOverview summary={summary} fetching={fetching} />
       </div>
       <div className='AssetOverviewItem'>
-        <Holding holdings={holdings} />
+        <Holding holdings={holdings} fetching={fetching} />
       </div>
     </div>
   )

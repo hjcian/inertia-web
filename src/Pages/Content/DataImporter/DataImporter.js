@@ -52,11 +52,10 @@ const FileDropzone = () => {
       FetchPrices(calc.GetSymbols())
         .then(results => {
           calc.UpdatePrices(results)
-          console.log(JSON.stringify(calc.CurrentHoldings()))
-          console.log(JSON.stringify(calc.Summary()))
           updateHoldings({
             holdings: calc.CurrentHoldings(),
-            summary: calc.Summary()
+            summary: calc.Summary(),
+            fetching: false
           })
         })
         .catch(err => console.log(err))
@@ -64,7 +63,8 @@ const FileDropzone = () => {
       // render current holdings first
       updateHoldings({
         holdings: calc.CurrentHoldings(),
-        summary: calc.Summary()
+        summary: calc.Summary(),
+        fetching: true
       })
     }
     reader.readAsText(file)
