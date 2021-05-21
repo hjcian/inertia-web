@@ -25,7 +25,9 @@ const langs = {
     },
     Content: {
       dropzoneDragActive: 'Drop the transaction CSV file here ...',
-      dropzoneDragInactive: 'Drag and drop the transaction CSV file here, or click to select from folder.'
+      dropzoneDragInactive: 'Drag and drop the transaction CSV file here, or click to select from folder.',
+      assetOverview: 'Asset Overview',
+      rebalancing: 'Rebalancing'
     },
     Holdings: {
       holdingsPart: {
@@ -38,7 +40,7 @@ const langs = {
         sharesText: 'shares'
       },
       summaryPart: {
-        title: 'Summary',
+        title: 'Investment Overview',
         totalCost: 'Total Cost',
         totalMarketValue: 'Total Market Value',
         simpleReturn: 'Simple Return',
@@ -53,7 +55,9 @@ const langs = {
     },
     Content: {
       dropzoneDragActive: '放開你的交易紀錄 CSV 檔...',
-      dropzoneDragInactive: '拖放你的交易紀錄(csv file)到這裡，或點擊此區塊從資料夾中選取'
+      dropzoneDragInactive: '拖放你的交易紀錄(csv file)到這裡，或點擊此區塊從資料夾中選取',
+      assetOverview: '資產概要',
+      rebalancing: '再平衡試算'
     },
     Holdings: {
       holdingsPart: {
@@ -66,7 +70,7 @@ const langs = {
         sharesText: '股'
       },
       summaryPart: {
-        title: '投資組合摘要',
+        title: '投資概要',
         totalCost: '總成本',
         totalMarketValue: '總市場價值',
         simpleReturn: '簡單報酬率',

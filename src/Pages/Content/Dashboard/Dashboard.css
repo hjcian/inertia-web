@@ -2,6 +2,11 @@
     display: flex;
 }
 
+.InvestmentOverview {
+    display: flex;
+    justify-content: space-between;
+}
+
 .SummaryItem {
     display: flex;
     justify-content: flex-start;

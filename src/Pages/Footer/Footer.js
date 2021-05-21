@@ -21,7 +21,7 @@ const Footer = () => {
     <div className='Footer'>
       <div className='FooterTop'>
 
-        <FooterNav />
+        {/* <FooterNav /> */}
 
         <div className='FooterItem'>
           {`${APP_VERSION}`}
