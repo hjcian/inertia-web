@@ -3,44 +3,82 @@ import MenuItem from '@material-ui/core/MenuItem'
 import IconButton from '@material-ui/core/IconButton'
 import Tooltip from '@material-ui/core/Tooltip'
 import GitHubIcon from '@material-ui/icons/GitHub'
+import TranslateIcon from '@material-ui/icons/Translate'
+import { makeStyles } from '@material-ui/core/styles'
 
 import { useLang, supportedLangs } from '../../global/context/language'
 import logo from '../../images/logo.png'
+import { AppBar, Toolbar } from '@material-ui/core'
 
+const useStyles = makeStyles((theme) => ({
+  appBar: {
+    backgroundColor: '#e7f5ff'
+  },
+  appBarWrapper: {
+    width: '80%',
+    margin: '0 auto'
+  },
+  appBarTitle: {
+    flexGrow: 1
+  },
+  brandImage: {
+    width: '75px'
+  },
+  selectLang: {
+    margin: '0 0.5rem',
+    fontSize: '0.8rem',
+    minWidth: '3rem'
+  },
+  selectLangItem: {
+    fontSize: '0.8rem'
+  },
+  githubButton: {
+  },
+  githubIcon: {
+    color: '#1864ab'
+  }
+}))
 const Header = () => {
+  const classes = useStyles()
   const { lang, switchLang } = useLang()
   const { Header, Code } = lang
   const handleLangChange = e => switchLang(e.target.value)
   return (
-    <div className='Header'>
-      <div className='HeaderBrandPart'>
-        <a className='HeaderBrand' href='/'>
-          <img className='HeaderBrandImage' src={logo} alt={Header.brand} />
-        </a>
-      </div>
-      <div className='HeaderRight'>
-        <div className='HeaderRightItem'>
+    <div>
+      <AppBar className={classes.appBar}>
+        <Toolbar className={classes.appBarWrapper}>
+          <div className={classes.appBarTitle}>
+            <a href='/'>
+              <img className={classes.brandImage} src={logo} alt={Header.brand} />
+            </a>
+          </div>
           <Select
+            disableUnderline
+            className={classes.selectLang}
+            startIcon={TranslateIcon}
             value={Code}
             onChange={handleLangChange}
           >
             {supportedLangs.map(({ code, text }) =>
-              <MenuItem key={code} value={code}>
+              <MenuItem
+                className={classes.selectLangItem}
+                key={code}
+                value={code}
+              >
                 {text}
               </MenuItem>)}
           </Select>
-        </div>
-        <div className='HeaderRightItem'>
           <Tooltip title='Github' arrow>
             <IconButton
+              className={classes.githubButton}
               href='https://github.com/hjcian/inertia-web'
               target='_blank' rel='noreferrer'
             >
-              <GitHubIcon />
+              <GitHubIcon className={classes.githubIcon} />
             </IconButton>
           </Tooltip>
-        </div>
-      </div>
+        </Toolbar>
+      </AppBar>
     </div>
   )
 }

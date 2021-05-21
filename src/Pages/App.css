@@ -20,27 +20,9 @@ html, body {
     /* border: 1px dashed; */
 }
 
-.Header, .ContentBase{
+.ContentBase{
     display: grid;
     grid-template-columns: 1fr 4fr;
-}
-
-.HeaderBrandPart, .HeaderRight {
-    display: flex;
-    align-items: center;
-}
-
-.HeaderBrandImage {
-    width: 75px;
-}
-
-.HeaderRight {
-    justify-content: flex-end;
-}
-
-.HeaderRightItem {
-    margin-right: 1rem;
-    margin-left: 1rem;
 }
 
 .ContentWithoutData {
