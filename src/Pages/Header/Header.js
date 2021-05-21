@@ -1,21 +1,24 @@
-import Select from '@material-ui/core/Select'
-import MenuItem from '@material-ui/core/MenuItem'
-import IconButton from '@material-ui/core/IconButton'
-import Tooltip from '@material-ui/core/Tooltip'
+import {
+  AppBar,
+  Toolbar,
+  Select,
+  MenuItem,
+  IconButton,
+  Tooltip
+} from '@material-ui/core'
 import GitHubIcon from '@material-ui/icons/GitHub'
 import TranslateIcon from '@material-ui/icons/Translate'
 import { makeStyles } from '@material-ui/core/styles'
 
 import { useLang, supportedLangs } from '../../global/context/language'
 import logo from '../../images/logo.png'
-import { AppBar, Toolbar } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
     backgroundColor: '#e7f5ff'
   },
   appBarWrapper: {
-    width: '80%',
+    width: '50%',
     margin: '0 auto'
   },
   appBarTitle: {

@@ -1,8 +1,3 @@
-html, body {
-    width: 100%;
-    margin: 0;
-}
-
 .App {
     padding: 0;
     margin: 0;
@@ -34,14 +29,4 @@ html, body {
 
 .ContentWithData {
     display: flex;
-}
-
-.Footer {
-    display: flex;
-    justify-content:space-between;
-    align-items: center;
-}
-
-.FooterItem {
-    margin: 0 2em;
 }

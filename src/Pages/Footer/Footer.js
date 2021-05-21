@@ -1,5 +1,12 @@
-import Typography from '@material-ui/core/Typography'
-import Box from '@material-ui/core/Box'
+import {
+  AppBar,
+  Toolbar,
+  Typography
+} from '@material-ui/core'
+
+import CopyrightIcon from '@material-ui/icons/Copyright'
+import { makeStyles } from '@material-ui/core/styles'
+
 import { useLang } from '../../global/context/language'
 
 // import {
@@ -16,28 +23,46 @@ const APP_VERSION = '0.1.0'
 //     </div>
 //   )
 // }
+const useStyles = makeStyles((theme) => ({
+  appBar: {
+    color: '#1864ab',
+    backgroundColor: '#e7f5ff',
+    top: 'auto',
+    bottom: 0
+  },
+  appBarWrapper: {
+    width: '50%',
+    margin: '0 auto'
+  },
+  copyrightIcon: {
+    fontSize: '1rem'
+  },
+  rightsText: {
+    fontStyle: 'italic',
+    flexGrow: 1
+  },
+  versionText: {
+    fontStyle: 'italic'
+  }
+}))
 
 const Footer = () => {
+  const classes = useStyles()
   const { lang } = useLang()
   const { version } = lang.Footer
   return (
-    <div className='Footer'>
-      {/* <FooterNav /> */}
-      <div className='FooterItem'>
-        <Typography component='div' variant='caption'>
-          <Box fontStyle='italic'>
-            © InertIA 2021. All Rights Reserved.
-          </Box>
+    <AppBar position='fixed' className={classes.appBar}>
+      <Toolbar className={classes.appBarWrapper}>
+        {/* <FooterNav /> */}
+        <CopyrightIcon className={classes.copyrightIcon} />
+        <Typography className={classes.rightsText} component='div' variant='caption'>
+          InertIA 2021. All Rights Reserved.
         </Typography>
-      </div>
-      <div className='FooterItem'>
-        <Typography component='div' variant='caption'>
-          <Box fontStyle='italic'>
-            {`${version}: ${APP_VERSION}`}
-          </Box>
+        <Typography className={classes.versionText} component='div' variant='caption'>
+          {`${version}: ${APP_VERSION}`}
         </Typography>
-      </div>
-    </div>
+      </Toolbar>
+    </AppBar>
   )
 }
 
