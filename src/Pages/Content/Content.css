@@ -10,3 +10,34 @@
     width: 80%;
     height: 50%;
 }
+
+.Dashboard {
+    display: flex;
+}
+
+.InvestmentOverview {
+    display: flex;
+    justify-content: space-between;
+}
+
+.SummaryItem {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.SummaryItemTitle {
+    min-width: 10em;
+}
+
+.PositionShares {
+    font-size: 0.6rem;
+}
+
+.AssetOverview {
+    display: flex;
+    flex-direction: column;
+}
+
+.AssetOverviewItem {
+    margin: 0.5rem 0;
+}

@@ -4,8 +4,7 @@ import {
 } from 'react-router-dom'
 
 import Rebalancing from './Rebalancing/Rebalancing'
-import Holdings from './Holdings/Holdings'
-import './Dashboard.css'
+import AssetOverview from './AssetOverview/AssetOverview'
 
 const Switcher = () => {
   return (
@@ -14,7 +13,7 @@ const Switcher = () => {
         <Rebalancing />
       </Route>
       <Route path='/'>
-        <Holdings />
+        <AssetOverview />
       </Route>
     </Switch>
   )

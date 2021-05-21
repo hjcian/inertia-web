@@ -43,7 +43,6 @@ const InvestmentOverview = ({ summary }) => {
   ]
   return (
     <>
-      <Typography variant='h6' color='textPrimary'>{summaryPart.title}</Typography>
       <div className='InvestmentOverview'>
         {summaryItems.map((props) => <StyledSummaryItem key={props.title} {...props} />)}
       </div>
