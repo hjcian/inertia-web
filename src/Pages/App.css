@@ -17,20 +17,20 @@ html, body {
     min-height: 3em;
     min-width: 40em;
     max-width: 1170px;
-    border: 1px dashed;
+    /* border: 1px dashed; */
 }
 
-.Header {
+.Header, .ContentBase{
     display: grid;
     grid-template-columns: 1fr 4fr;
 }
 
-.HeaderLeft, .HeaderRight {
+.HeaderBrandPart, .HeaderRight {
     display: flex;
     align-items: center;
 }
 
-.HeaderLeftBrandImage {
+.HeaderBrandImage {
     width: 75px;
 }
 
@@ -42,7 +42,6 @@ html, body {
     margin-right: 1rem;
     margin-left: 1rem;
 }
-
 
 .ContentWithoutData {
     min-height: 30em;
