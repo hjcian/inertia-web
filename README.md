@@ -2,8 +2,7 @@
 
 ![Netlify Status](https://api.netlify.com/api/v1/badges/e912a2f1-9929-40ed-87a0-5216d6b79f59/deploy-status)
 
-Visit the InertIA 👉 <a href="https://inertia-web.netlify.app/" target="_blank" rel="noopener">https://inertia-web.netlify.app/</a>
-
+Visit the InertIA 👉 https://inertia-web.netlify.app/
 
 ## ⭐ 功能
 - 支援 Firstade 交易紀錄格式
