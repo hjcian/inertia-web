@@ -1,36 +1,41 @@
-import {
-  // BrowserRouter,
-  // Switch,
-  // Route,
-  Link
-} from 'react-router-dom'
+import Typography from '@material-ui/core/Typography'
+import Box from '@material-ui/core/Box'
+import { useLang } from '../../global/context/language'
 
-const APP_VERSION = 'v0.1.0'
+// import {
+//   Link
+// } from 'react-router-dom'
 
-const FooterNav = () => {
-  return (
-    <div className='FooterNav'>
-      <Link className='FooterItem' to='/about'>About</Link>
-      <Link className='FooterItem' to='/privacypolicy'>Privacy Policy</Link>
-    </div>
-  )
-}
+const APP_VERSION = '0.1.0'
+
+// const FooterNav = () => {
+//   return (
+//     <div className='FooterNav'>
+//       <Link className='FooterItem' to='/about'>About</Link>
+//       <Link className='FooterItem' to='/privacypolicy'>Privacy Policy</Link>
+//     </div>
+//   )
+// }
 
 const Footer = () => {
+  const { lang } = useLang()
+  const { version } = lang.Footer
   return (
     <div className='Footer'>
-      <div className='FooterTop'>
-
-        {/* <FooterNav /> */}
-
-        <div className='FooterItem'>
-          {`${APP_VERSION}`}
-        </div>
+      {/* <FooterNav /> */}
+      <div className='FooterItem'>
+        <Typography component='div' variant='caption'>
+          <Box fontStyle='italic'>
+            © InertIA 2021. All Rights Reserved.
+          </Box>
+        </Typography>
       </div>
-      <div className='FooterBottom'>
-        <div className='FooterItem'>
-          © InertIA 2021. All Rights Reserved.
-        </div>
+      <div className='FooterItem'>
+        <Typography component='div' variant='caption'>
+          <Box fontStyle='italic'>
+            {`${version}: ${APP_VERSION}`}
+          </Box>
+        </Typography>
       </div>
     </div>
   )

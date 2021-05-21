@@ -57,15 +57,10 @@ html, body {
 
 .Footer {
     display: flex;
-    flex-direction: column;
+    justify-content:space-between;
     align-items: center;
 }
 
-.FooterTop {
-    display: flex;
-}
-
 .FooterItem {
-    border: 1px dashed;
-    margin: 0 1em;
+    margin: 0 2em;
 }

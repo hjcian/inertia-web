@@ -46,6 +46,9 @@ const langs = {
         simpleReturn: 'Simple Return',
         annualReturn: 'Annual Return'
       }
+    },
+    Footer: {
+      version: 'Version'
     }
   },
   [zhtw]: {
@@ -76,6 +79,9 @@ const langs = {
         simpleReturn: '簡單報酬率',
         annualReturn: '年化報酬率'
       }
+    },
+    Footer: {
+      version: '版本'
     }
   }
 }
