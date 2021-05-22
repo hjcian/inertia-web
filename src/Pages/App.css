@@ -20,13 +20,6 @@
     grid-template-columns: 1fr 4fr;
 }
 
-.ContentWithoutData {
-    min-height: 30em;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .ContentWithData {
     display: flex;
 }

@@ -48,7 +48,7 @@ const Header = () => {
   const handleLangChange = e => switchLang(e.target.value)
   return (
     <>
-      <AppBar className={classes.appBar}>
+      <AppBar className={classes.appBar} elevation={0}>
         <Toolbar className={classes.appBarWrapper} variant='dense'>
           <div className={classes.appBarTitle}>
             <a href='/'>

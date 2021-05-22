@@ -51,7 +51,7 @@ const Footer = () => {
   const { lang } = useLang()
   const { version } = lang.Footer
   return (
-    <AppBar position='fixed' className={classes.appBar}>
+    <AppBar position='fixed' className={classes.appBar} elevation={0}>
       <Toolbar className={classes.appBarWrapper} variant='dense'>
         {/* <FooterNav /> */}
         <CopyrightIcon className={classes.copyrightIcon} />

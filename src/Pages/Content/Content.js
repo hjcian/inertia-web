@@ -11,7 +11,7 @@ import Typography from '@material-ui/core/Typography'
 import DashboardIcon from '@material-ui/icons/Dashboard'
 import ExposureIcon from '@material-ui/icons/Exposure'
 import Dashboard from './Dashboard/Dashboard'
-import DataImporter from './DataImporter/DataImporter'
+import LandingPage from './LandingPage/LandingPage'
 // import About from './About'
 import { useHoldings } from '../../global/context/holdings'
 import { useLang } from '../../global/context/language'
@@ -37,7 +37,7 @@ const NavSidebar = () => {
 const Content = () => {
   const { value: holdings } = useHoldings()
   return (
-    <div className={holdings ? 'ContentBase ContentWithData' : 'ContentBase ContentWithoutData'}>
+    <div className={holdings ? 'ContentBase ContentWithData' : null}>
       {
         holdings !== null
           ? <NavSidebar />
@@ -53,7 +53,7 @@ const Content = () => {
         <Route path='/'>
           {
             holdings === null
-              ? <DataImporter />
+              ? <LandingPage />
               : <Dashboard />
           }
         </Route>
