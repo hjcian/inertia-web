@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: '#e7f5ff'
   },
   appBarWrapper: {
-    width: '50%',
+    minWidth: '50vw',
     margin: '0 auto'
   },
   appBarTitle: {

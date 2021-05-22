@@ -72,7 +72,8 @@ const langs = {
       }
     },
     Footer: {
-      version: 'Version'
+      credit: 'Credits',
+      contact: 'Contact'
     }
   },
   [zhtw]: {
@@ -128,7 +129,8 @@ const langs = {
       }
     },
     Footer: {
-      version: '版本'
+      credit: 'Credits',
+      contact: 'Contact'
     }
   }
 }
