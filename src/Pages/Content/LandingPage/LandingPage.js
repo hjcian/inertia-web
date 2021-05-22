@@ -76,10 +76,10 @@ const LandingPage = () => {
   return (
     <div className={classes.root}>
       <CssBaseline />
-      <Typography className={classes.title} variant='h5'>
+      <Typography component='span' className={classes.title} variant='h5'>
         {LandingPage.mainTitle}
       </Typography>
-      <Typography className={classes.desc} variant='body1'>
+      <Typography component='span' className={classes.desc} variant='body1'>
         <Box>{LandingPage.desc}</Box>
         <Box>{LandingPage.subDesc}</Box>
       </Typography>

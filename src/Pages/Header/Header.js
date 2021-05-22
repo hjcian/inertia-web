@@ -7,7 +7,6 @@ import {
   Tooltip
 } from '@material-ui/core'
 import GitHubIcon from '@material-ui/icons/GitHub'
-import TranslateIcon from '@material-ui/icons/Translate'
 import { makeStyles } from '@material-ui/core/styles'
 
 import { useLang, supportedLangs } from '../../global/context/language'
@@ -58,7 +57,6 @@ const Header = () => {
           <Select
             disableUnderline
             className={classes.selectLang}
-            startIcon={TranslateIcon}
             value={Code}
             onChange={handleLangChange}
           >
