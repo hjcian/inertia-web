@@ -1,14 +1,11 @@
 import {
   AppBar,
   Box,
-  IconButton,
   Link,
   Toolbar,
   Typography
 } from '@material-ui/core'
-import GitHubIcon from '@material-ui/icons/GitHub'
 
-import CopyrightIcon from '@material-ui/icons/Copyright'
 import { makeStyles } from '@material-ui/core/styles'
 import { useLang } from '../../global/context/language'
 
