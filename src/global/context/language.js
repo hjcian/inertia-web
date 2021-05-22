@@ -31,7 +31,7 @@ const langs = {
     },
     LandingPage: {
       mainTitle: "Let's do the index investing more lazier.",
-      desc: 'InertIA, Inert Investing Assistant, is a web tool aims to help you to manage your index investing portfolio in a more convenient way.',
+      desc: 'InertIA, Inert Investment Assistant, is a web tool aims to help you to manage your index investment portfolio in a more convenient way.',
       subDesc: 'Just need 3 steps:',
       steps: [
         {
@@ -88,7 +88,7 @@ const langs = {
     },
     LandingPage: {
       mainTitle: '讓你更慵懶地實踐指數投資',
-      desc: 'InertIA，Inert Investing Assistant，是一個免費的線上工具幫助更方便地管理你的投資組合。',
+      desc: 'InertIA，Inert Investment Assistant，是一個免費的線上工具幫助更方便地管理你的投資組合。',
       subDesc: '只需要三步驟：',
       steps: [
         {

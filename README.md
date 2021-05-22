@@ -28,3 +28,6 @@ Visit the InertIA 👉 https://inertia-web.netlify.app/
 
 ## 🍀 其他用來打造此應用的免費資源
 - Logo: https://www.freelogodesign.org/
+- Illustrations:
+  - https://themeisle.com/illustrations/
+  - https://undraw.co/illustrations
