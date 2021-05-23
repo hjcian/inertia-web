@@ -1,5 +1,4 @@
 import {
-  AppBar,
   Box,
   Link,
   Toolbar,
@@ -10,17 +9,18 @@ import { makeStyles } from '@material-ui/core/styles'
 import { useLang } from '../../global/context/language'
 
 const useStyles = makeStyles((theme) => ({
-  appBar: {
+  root: {
     fontFamily: 'Noto Sans',
     color: '#1864ab',
     backgroundColor: '#e7f5ff',
-    top: 'auto',
+    width: '100vw',
+    marginTop: 'auto',
     bottom: 0
   },
   appBarWrapper: {
     display: 'flex',
     flexWrap: 'wrap',
-    minWidth: '50vw',
+    width: '60vw',
     margin: '0 auto'
   },
   copyrightIcon: {
@@ -53,13 +53,15 @@ const Footer = () => {
   const classes = useStyles()
   const { lang } = useLang()
   const { credit, contact } = lang.Footer
+  const since = 2021
+  const nowYear = new Date().getFullYear()
   return (
-    <AppBar position='fixed' className={classes.appBar} elevation={0}>
+    <footer className={classes.root}>
       <Toolbar className={classes.appBarWrapper}>
 
         <Box className={`${classes.container} ${classes.copyRights}`}>
           <Typography className={classes.containerTitle} component='div' variant='caption'>
-            © InertIA 2021. All Rights Reserved.
+            &reg; InertIA {nowYear > 2021 ? `${since}-${nowYear}` : since}. All Rights Reserved.
           </Typography>
         </Box>
 
@@ -80,9 +82,8 @@ const Footer = () => {
         </Box>
 
       </Toolbar>
-    </AppBar>
+    </footer>
   )
 }
 
 export default Footer
-// Illustration(s) from  https://themeisle.com/illustrations/ and https://undraw.co/illustrations

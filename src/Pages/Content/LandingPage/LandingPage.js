@@ -27,7 +27,8 @@ const useStyles = makeStyles((theme) => ({
   stepsContainer: {
     width: '100%',
     display: 'flex',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    flexWrap: 'wrap'
   },
   input: {
     display: 'none'

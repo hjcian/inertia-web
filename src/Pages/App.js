@@ -5,27 +5,42 @@ import Footer from './Footer/Footer'
 import Content from './Content/Content'
 import { ProvideHoldings } from '../global/context/holdings'
 import { ProvideLang } from '../global/context/language'
-import './App.css'
+import { makeStyles } from '@material-ui/core/styles'
+
+import Main from './practices/Main'
 
 import {
   BrowserRouter
 } from 'react-router-dom'
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    padding: 0,
+    margin: 0,
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center'
+  }
+}))
 function App () {
+  const classes = useStyles()
   return (
-    <div className='App'>
-      <CssBaseline />
-      <MessengerCustomerChat pageId='102334822055864' appId='248649133720997' />
-      <ProvideLang>
-        <BrowserRouter>
-          <Header />
-          <ProvideHoldings>
-            <Content />
-          </ProvideHoldings>
-          <Footer />
-        </BrowserRouter>
-      </ProvideLang>
-    </div>
+    <>
+      <div className={classes.root}>
+        <CssBaseline />
+        <MessengerCustomerChat pageId='102334822055864' appId='248649133720997' />
+        <ProvideLang>
+          <BrowserRouter>
+            <Header />
+            <ProvideHoldings>
+              <Content />
+            </ProvideHoldings>
+            <Footer />
+          </BrowserRouter>
+        </ProvideLang>
+      </div>
+      {/* <Main /> */}
+    </>
   )
 }
 

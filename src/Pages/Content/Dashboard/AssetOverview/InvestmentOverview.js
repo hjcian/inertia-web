@@ -1,5 +1,5 @@
 import { Typography, Card, CardContent } from '@material-ui/core'
-import { withStyles } from '@material-ui/core/styles'
+import { makeStyles, withStyles } from '@material-ui/core/styles'
 import { useLang } from '../../../../global/context/language'
 import { formatType, FormatNumber, withFetching } from './common'
 
@@ -28,7 +28,14 @@ const itemStyles = {
 
 const StyledSummaryCard = withStyles(itemStyles)(SummaryCard)
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    justifyContent: 'space-between'
+  }
+}))
 const InvestmentOverview = ({ summary, fetching }) => {
+  const classes = useStyles()
   const { lang } = useLang()
   const { summaryPart } = lang.Holdings
   const items = [
@@ -38,7 +45,7 @@ const InvestmentOverview = ({ summary, fetching }) => {
     { title: summaryPart.annualReturn, value: summary.annualReturn, type: formatType.rate, fetching }
   ]
   return (
-    <div className='InvestmentOverview'>
+    <div className={classes.root}>
       {items.map((item) => <StyledSummaryCard key={item.title} {...item} />)}
     </div>
   )

@@ -8,16 +8,19 @@ import Typography from '@material-ui/core/Typography'
 const useStyles = makeStyles({
   root: {
     fontFamily: 'Noto Sans',
-    minWidth: '20%',
-    minHeight: '40vh',
-    height: 320,
+    height: 300,
     width: 250,
     background: 'rgba(0,0,0,0)',
     margin: '1rem 0.7rem'
+
   },
   mediaContainer: {
     width: '100%',
-    height: '60%'
+    height: '55%'
+  },
+  cardContainer: {
+    width: '100%',
+    height: '45%'
   },
   title: {
     fontWeight: 'bold',
@@ -41,7 +44,7 @@ export default function StepCard ({ info }) {
           image={info.imageURL}
         />
       </div>
-      <CardContent>
+      <CardContent className={classes.cardContainer}>
         <Typography className={classes.title} gutterBottom variant='h5' component='h2'>
           {info.title}
         </Typography>

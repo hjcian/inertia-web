@@ -2,6 +2,7 @@ import {
   Switch,
   Route
 } from 'react-router-dom'
+import { makeStyles } from '@material-ui/core/styles'
 
 import Rebalancing from './Rebalancing/Rebalancing'
 import AssetOverview from './AssetOverview/AssetOverview'
@@ -18,10 +19,15 @@ const Switcher = () => {
     </Switch>
   )
 }
-
+const useStyles = makeStyles((theme) => ({
+  root: {
+    // display: 'flex'
+  }
+}))
 const Dashboard = () => {
+  const classes = useStyles()
   return (
-    <div className='Dashboard'>
+    <div className={classes.root}>
       <Switcher />
     </div>
   )

@@ -1,26 +1,33 @@
-import Typography from '@material-ui/core/Typography'
+import { Box } from '@material-ui/core/'
+import { makeStyles } from '@material-ui/core/styles'
 
 import InvestmentOverview from './InvestmentOverview'
 import Holding from './Holdings'
 
 import { useHoldings } from '../../../../global/context/holdings'
-import { useLang } from '../../../../global/context/language'
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    flexDirection: 'column'
+  },
+  part: {
+    margin: '1rem 0 0.5rem'
+  }
+}))
 const AssetOverview = () => {
+  const classes = useStyles()
   const { value } = useHoldings()
   const { holdings, summary, fetching } = value
-  const { lang } = useLang()
-  const { assetOverview } = lang.Content
   return (
-    <div className='AssetOverview'>
-      <Typography variant='subtitle1' color='textSecondary'>{assetOverview}</Typography>
-      <div className='AssetOverviewItem'>
+    <Box className={classes.root}>
+      <Box className={classes.part}>
         <InvestmentOverview summary={summary} fetching={fetching} />
-      </div>
-      <div className='AssetOverviewItem'>
+      </Box>
+      <Box className={classes.part}>
         <Holding holdings={holdings} fetching={fetching} />
-      </div>
-    </div>
+      </Box>
+    </Box>
   )
 }
 
