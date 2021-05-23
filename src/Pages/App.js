@@ -1,4 +1,4 @@
-import MessengerCustomerChat from 'react-messenger-customer-chat'
+// import MessengerCustomerChat from 'react-messenger-customer-chat'
 import { CssBaseline } from '@material-ui/core'
 import Header from './Header/Header'
 import Footer from './Footer/Footer'
@@ -28,7 +28,7 @@ function App () {
     <>
       <div className={classes.root}>
         <CssBaseline />
-        <MessengerCustomerChat pageId='102334822055864' appId='248649133720997' />
+        {/* <MessengerCustomerChat pageId='102334822055864' appId='248649133720997' /> */}
         <ProvideLang>
           <BrowserRouter>
             <Header />
