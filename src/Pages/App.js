@@ -7,7 +7,7 @@ import { ProvideHoldings } from '../global/context/holdings'
 import { ProvideLang } from '../global/context/language'
 import { makeStyles } from '@material-ui/core/styles'
 
-import Main from './practices/Main'
+// import Main from './practices/Main'
 
 import {
   BrowserRouter
