@@ -65,15 +65,28 @@ const langs = {
       },
       summaryPart: {
         title: 'Investment Overview',
+        cashBP: 'Cash BP', // BP: Buying Power
         totalCost: 'Total Cost',
         totalMarketValue: 'Total Market Value',
         simpleReturn: 'Simple Return',
         annualReturn: 'Annual Return'
       }
     },
+    Rebalancing: {
+      capitalInput: 'Capital Input',
+      settledCash: 'Settled Cash',
+      position: 'Position',
+      currentRatio: 'Current Ratio',
+      targetRatio: 'Target Ratio',
+      shouldAdjust: 'Should Adjust',
+      wantAdjust: 'Want Adjust'
+    },
     Footer: {
       credit: 'Credits',
       contact: 'Contact'
+    },
+    Unit: {
+      shares: 'shares'
     }
   },
   [zhtw]: {
@@ -122,15 +135,28 @@ const langs = {
       },
       summaryPart: {
         title: '投資概要',
+        cashBP: '現金購買力', // BP: Buying Power
         totalCost: '總成本',
         totalMarketValue: '總市場價值',
         simpleReturn: '簡單報酬率',
         annualReturn: '年化報酬率'
       }
     },
+    Rebalancing: {
+      capitalInput: '此次投入金額',
+      settledCash: '調整後現金結餘',
+      position: '部位',
+      currentRatio: '目前配置',
+      targetRatio: '目標配置',
+      shouldAdjust: '應調整',
+      wantAdjust: '實際調整'
+    },
     Footer: {
       credit: 'Credits',
       contact: 'Contact'
+    },
+    Unit: {
+      shares: '股'
     }
   }
 }

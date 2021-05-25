@@ -80,6 +80,10 @@ class Calculator {
     return 0
   }
 
+  computeCashBP () {
+    return 0
+  }
+
   CurrentHoldings () {
     const entries = [...this.symbolMap.entries()]
     const currentHoldings = entries.map(entry => {
@@ -96,11 +100,13 @@ class Calculator {
     const totalMarketValue = this.computeMarketValue()
     const simpleReturn = (totalMarketValue - totalCost) / totalCost
     const annualReturn = this.computeIRR(totalMarketValue)
+    const cashBP = this.computeCashBP()
     return {
       totalCost,
       totalMarketValue,
       simpleReturn,
-      annualReturn
+      annualReturn,
+      cashBP
     }
   }
 
@@ -187,6 +193,10 @@ class FTCalculator extends Calculator {
       }), { amount: totalMarketValue, when: new Date() }]
     const rate = xirr(transactions, { guess: 0.1 })
     return rate
+  }
+
+  computeCashBP () {
+    return this.rows.reduce((accumulator, row) => accumulator + row.Amount, 0)
   }
 }
 

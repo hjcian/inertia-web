@@ -17,8 +17,8 @@ const useStyles = makeStyles((theme) => ({
 }))
 const AssetOverview = () => {
   const classes = useStyles()
-  const { value } = useHoldings()
-  const { holdings, summary, fetching } = value
+  const { holdings, summary, fetching } = useHoldings().value
+
   return (
     <Box className={classes.root}>
       <Box className={classes.part}>

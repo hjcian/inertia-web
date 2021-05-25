@@ -1,10 +1,11 @@
 import {
-  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography
+  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
 } from '@material-ui/core'
 
+import Column from '../Components/Column'
 import { makeStyles, withStyles } from '@material-ui/core/styles'
 import { useLang } from '../../../../global/context/language'
-import { withFetching, Currency } from './common'
+import { withFetching, Currency } from '../utils/common'
 
 const StyledTableCell = withStyles((theme) => ({
   root: {
@@ -39,10 +40,6 @@ const HoldingRow = ({ symbol, shares, totalCost, unitCost, price, marketValue, f
 const Holding = ({ holdings, fetching }) => {
   const { lang } = useLang()
   const { holdingsPart } = lang.Holdings
-
-  const Column = ({ text }) => {
-    return <Typography variant='body2' color='textSecondary'>{text}</Typography>
-  }
 
   return (
     <TableContainer component={Paper}>

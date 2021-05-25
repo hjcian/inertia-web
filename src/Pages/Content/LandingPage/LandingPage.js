@@ -50,15 +50,16 @@ const LandingPage = () => {
     reader.onerror = () => console.log('file reading has failed')
     reader.onload = () => {
       const string = reader.result
-      const calc = ParseFromString(string)
+      const calculator = ParseFromString(string)
 
       // fetch prices and update it via async call
-      FetchPrices(calc.GetSymbols())
+      FetchPrices(calculator.GetSymbols())
         .then(results => {
-          calc.UpdatePrices(results)
+          calculator.UpdatePrices(results)
           updateHoldings({
-            holdings: calc.CurrentHoldings(),
-            summary: calc.Summary(),
+            calculator,
+            holdings: calculator.CurrentHoldings(),
+            summary: calculator.Summary(),
             fetching: false
           })
         })
@@ -66,8 +67,9 @@ const LandingPage = () => {
 
       // render current holdings first
       updateHoldings({
-        holdings: calc.CurrentHoldings(),
-        summary: calc.Summary(),
+        calculator,
+        holdings: calculator.CurrentHoldings(),
+        summary: calculator.Summary(),
         fetching: true
       })
     }

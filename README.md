@@ -36,3 +36,6 @@ Visit the InertIA 👉 https://inertia-web.netlify.app/
 - Illustrations:
   - https://themeisle.com/illustrations/
   - https://undraw.co/illustrations
+
+## 誤差
+- DIVIDEND 的資料對不起來
