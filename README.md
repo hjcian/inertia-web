@@ -6,9 +6,12 @@ Visit the InertIA 👉 https://inertia-web.netlify.app/
 
 ## ⭐ 功能
 - 支援 Firstade 交易紀錄格式
-- 計算各目前持股的**股數(*shares*)**、**單位成本(*unit cost*)** 及 **總成本(*total cost*)**
-- 自動抓取各目前持股最新的**報價(*price*)**，並計算各目前持股的**市場價值(*market value*)**
-- 計算投資組合的**簡單報酬率(*simple return*)**及**年化報酬率(*annual return*)**
+- 資料呈現
+  - 計算各目前持股的**股數(*shares*)**、**單位成本(*unit cost*)** 及 **總成本(*total cost*)**
+  - 自動抓取各目前持股最新的**報價(*price*)**，並計算各目前持股的**市場價值(*market value*)**
+  - 計算投資組合的**簡單報酬率(*simple return*)**及**年化報酬率(*annual return*)**
+- 操作
+  - 提供再平衡試算
 
 ## 🏗️ 架構/使用的技術/函式庫
 - 前端 (web)
@@ -23,7 +26,6 @@ Visit the InertIA 👉 https://inertia-web.netlify.app/
 
 ## 👺 Todo
 - Features
-  - 計算各目前持股的配置比例，並提供再平衡操作
   - support other securities' exported data format (TD Ameritrade, Interactive Brokers (IB), ...etc.)
 - Improvements
   - 增加 client side cache 的機制
