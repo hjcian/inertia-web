@@ -177,6 +177,8 @@ const Rebalancing = () => {
   const handleDeleteExtraSymbol = (deletedSymbol) => {
     const updatedTargetRatios = targetRatios.filter(({ symbol }) => symbol !== deletedSymbol)
     setTargetRatios(updatedTargetRatios)
+    const updatedRebalancingData = rebalancingData.filter(({ symbol }) => symbol !== deletedSymbol)
+    updateValue({ holdings, summary, rebalancingData: updatedRebalancingData })
   }
 
   return (
