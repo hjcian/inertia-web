@@ -196,7 +196,7 @@ class FTCalculator extends Calculator {
   }
 
   computeCashBP () {
-    return this.rows.reduce((accumulator, row) => accumulator + row.Amount, 0)
+    return round(this.rows.reduce((accumulator, row) => accumulator + row.Amount, 0), 2)
   }
 }
 

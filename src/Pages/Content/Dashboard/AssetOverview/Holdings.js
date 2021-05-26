@@ -1,9 +1,9 @@
 import {
-  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper
+  Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography
 } from '@material-ui/core'
 
 import Column from '../Components/Column'
-import { makeStyles, withStyles } from '@material-ui/core/styles'
+import { withStyles } from '@material-ui/core/styles'
 import { useLang } from '../../../../global/context/language'
 import { withFetching, Currency } from '../utils/common'
 
@@ -13,21 +13,17 @@ const StyledTableCell = withStyles((theme) => ({
   }
 }))(TableCell)
 
-const useStyles = makeStyles((theme) => ({
-  positionShares: {
-    fontSize: '0.6rem'
-  }
-}))
 const HoldingRow = ({ symbol, shares, totalCost, unitCost, price, marketValue, fetching }) => {
-  const classes = useStyles()
   const { lang } = useLang()
   const { holdingsPart } = lang.Holdings
   const FetchingCurrency = withFetching(Currency, fetching)
+  const shareText = `${shares.toFixed(2)} ${holdingsPart.sharesText}`
   return (
     <TableRow key={symbol}>
       <StyledTableCell align='left'>
         {symbol}
-        <div className={classes.positionShares}>{`${shares.toFixed(2)} ${holdingsPart.sharesText}`}</div>
+        <br />
+        <Typography variant='caption' color='textSecondary'>{shareText}</Typography>
       </StyledTableCell>
       <StyledTableCell align='right'><Currency number={totalCost} /></StyledTableCell>
       <StyledTableCell align='right'><Currency number={unitCost} /></StyledTableCell>

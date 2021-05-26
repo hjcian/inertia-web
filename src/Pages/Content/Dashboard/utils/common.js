@@ -13,6 +13,10 @@ const largeFormatter = new Intl.NumberFormat('en-US', {
   maximumFractionDigits: 0
 })
 
+export const currencyFormatter = (number) => {
+  return number > largeNum ? largeFormatter.format(number) : `$ ${number.toFixed(2)}`
+}
+
 export const Currency = ({ number }) => {
   return (<>{number > largeNum ? largeFormatter.format(number) : `$ ${number.toFixed(2)}`}</>)
 }

@@ -79,7 +79,12 @@ const langs = {
       currentRatio: 'Current Ratio',
       targetRatio: 'Target Ratio',
       shouldAdjust: 'Should Adjust',
-      wantAdjust: 'Want Adjust'
+      wantAdjust: 'Want Adjust',
+      ExtraAllocationAdder: {
+        tooltip: 'use comma as separator. e.g. VTI, BND',
+        placeholder: 'add allocation',
+        invalidSymbolWarning: 'invalid symbol(s):'
+      }
     },
     Footer: {
       credit: 'Credits',
@@ -149,7 +154,12 @@ const langs = {
       currentRatio: '目前配置',
       targetRatio: '目標配置',
       shouldAdjust: '應調整',
-      wantAdjust: '實際調整'
+      wantAdjust: '實際調整',
+      ExtraAllocationAdder: {
+        tooltip: '使用半形逗點分隔。e.g. VTI, BND',
+        placeholder: '增加配置',
+        invalidSymbolWarning: '查無資料：'
+      }
     },
     Footer: {
       credit: 'Credits',
