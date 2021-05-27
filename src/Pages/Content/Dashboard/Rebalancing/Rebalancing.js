@@ -1,17 +1,15 @@
 import { useEffect, useState } from 'react'
 import {
-  Tooltip, Box, Card, CardContent, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, Typography, CircularProgress, InputAdornment, IconButton
+  Tooltip, Box, Card, CardContent, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, CircularProgress, InputAdornment, IconButton
 } from '@material-ui/core'
 import { makeStyles, withStyles } from '@material-ui/core/styles'
 import DeleteIcon from '@material-ui/icons/Delete'
-
-import Column from '../Components/Column'
+import ExtraAllocationAdder from './ExtraAllocationAdder'
+import { Column, PrimaryField, SecondaryField } from '../Components'
+import { currencyFormatter, rateFormatter } from '../utils/common'
 import { FetchPrices } from '../../../../utils/fetch.mjs'
-import { formatType, FormatNumber, currencyFormatter } from '../utils/common'
 import { useHoldings } from '../../../../global/context/holdings'
 import { useLang } from '../../../../global/context/language'
-
-const enterKey = 13
 
 const formatBuySell = (number) => {
   return number >= 0 ? Math.floor(number) : Math.ceil(number)
@@ -54,7 +52,7 @@ const useStyles = makeStyles({
   deleteIcon: {
     fontSize: '1rem'
   },
-  cardcontent: {
+  compactCardContent: {
     padding: '0.5rem 0.8rem', // default is too much
     '&:last-child': {
       paddingBottom: '0.5rem' // default is too much
@@ -69,14 +67,13 @@ const useStyles = makeStyles({
 })
 const Rebalancing = () => {
   const classes = useStyles()
-  const { lang } = useLang()
-  const { Rebalancing } = lang
+  const { Rebalancing } = useLang().lang
   const { value, updateValue } = useHoldings()
-  const { holdings, summary, rebalancingData } = value
+  const { holdings, summary, allocationData } = value
   const { cashBP, totalMarketValue } = summary
   const [capitalInput, setCapitalInput] = useState(cashBP)
-  const [targetRatios, setTargetRatios] = useState(
-    rebalancingData === undefined
+  const [allocations, setAllocations] = useState(
+    allocationData === undefined
       ? (holdings.map(({ symbol, marketValue, price, shares }) => {
           const ratio = marketValue / totalMarketValue * 100 // to percentage
           return {
@@ -90,7 +87,7 @@ const Rebalancing = () => {
             actualAdjust: 0
           }
         }))
-      : rebalancingData
+      : allocationData
   )
   const [settledCash, setSettledCash] = useState(cashBP)
 
@@ -99,12 +96,12 @@ const Rebalancing = () => {
     value = !isNaN(value) && value >= 0 ? value : ''
     setCapitalInput(value)
     if (value !== '') {
-      const updatedTargetRatios = targetRatios.map((data, idx) => {
+      const updatedAlloc = allocations.map((data, idx) => {
         const { marketValue, price, targetRatio } = data
         data.shouldAdjust = ((value + totalMarketValue) * targetRatio / 100 - marketValue) / price
         return data
       })
-      setTargetRatios(updatedTargetRatios)
+      setAllocations(updatedAlloc)
     }
   }
 
@@ -114,7 +111,7 @@ const Rebalancing = () => {
       value = parseInt(value)
       value = value === '' ? '' : isNaN(value) ? 0 : normRatio(value)
     }
-    const updatedTargetRatios = targetRatios.map((data, idx) => {
+    const updatedAlloc = allocations.map((data, idx) => {
       if (data.symbol === id) {
         const { marketValue, price } = data
         data.targetRatio = value
@@ -122,30 +119,30 @@ const Rebalancing = () => {
       }
       return data
     })
-    setTargetRatios(updatedTargetRatios)
+    setAllocations(updatedAlloc)
   }
 
   const handleActualAdjust = e => {
     let { id, value } = e.target
     value = value === '' ? '' : isNaN(parseInt(value)) ? 0 : value
-    const updatedTargetRatios = targetRatios.map((data, idx) => {
+    const updatedAlloc = allocations.map((data, idx) => {
       if (data.symbol === id) {
         data.actualAdjust = value
       }
       return data
     })
-    setTargetRatios(updatedTargetRatios)
+    setAllocations(updatedAlloc)
   }
 
   useEffect(() => {
-    const updatedSettledCash = targetRatios.reduce((acc, data) => {
+    const updatedSettledCash = allocations.reduce((acc, data) => {
       return acc - formatBuySell(data.actualAdjust) * data.price
     }, capitalInput)
     setSettledCash(updatedSettledCash)
-  }, [capitalInput, targetRatios])
+  }, [capitalInput, allocations])
 
   const fetchPrices = (inputSymbols, cb) => {
-    const cachedSymbolPrice = targetRatios.filter(({ symbol }) => inputSymbols.includes(symbol)).map(({ symbol, price }) => ({ symbol, price }))
+    const cachedSymbolPrice = allocations.filter(({ symbol }) => inputSymbols.includes(symbol)).map(({ symbol, price }) => ({ symbol, price }))
     const cachedSymbols = cachedSymbolPrice.map(sp => sp.symbol)
     const newSymbols = inputSymbols.filter(s => !cachedSymbols.includes(s))
 
@@ -164,21 +161,21 @@ const Rebalancing = () => {
             isExtra: true
           }
         })
-        const updatedRebalancingData = [...targetRatios, ...extraSymbolPrices]
+        const updatedAllocationData = [...allocations, ...extraSymbolPrices]
         // update global state for component mount/unmount
-        updateValue({ holdings, summary, rebalancingData: updatedRebalancingData })
+        updateValue({ holdings, summary, allocationData: updatedAllocationData })
         // update local state for component update
-        setTargetRatios(updatedRebalancingData)
+        setAllocations(updatedAllocationData)
         const combined = [...result, ...cachedSymbolPrice]
         cb(combined)
       })
   }
 
   const handleDeleteExtraSymbol = (deletedSymbol) => {
-    const updatedTargetRatios = targetRatios.filter(({ symbol }) => symbol !== deletedSymbol)
-    setTargetRatios(updatedTargetRatios)
-    const updatedRebalancingData = rebalancingData.filter(({ symbol }) => symbol !== deletedSymbol)
-    updateValue({ holdings, summary, rebalancingData: updatedRebalancingData })
+    const updatedAlloc = allocations.filter(({ symbol }) => symbol !== deletedSymbol)
+    setAllocations(updatedAlloc)
+    const updatedAllocationData = allocationData.filter(({ symbol }) => symbol !== deletedSymbol)
+    updateValue({ holdings, summary, allocationData: updatedAllocationData })
   }
 
   return (
@@ -186,9 +183,9 @@ const Rebalancing = () => {
       <Box className={classes.infoContainer}>
         <TextField className={classes.infoBox} value={capitalInput} error={capitalInput === ''} label={Rebalancing.capitalInput} onChange={handleCapitalInput} type='number' />
         <Card className={classes.infoBox}>
-          <CardContent className={classes.cardcontent}>
-            <FormatNumber type={formatType.currency} value={settledCash} />
-            <Typography variant='caption' color='textSecondary' component='p'>{Rebalancing.settledCash}</Typography>
+          <CardContent className={classes.compactCardContent}>
+            <PrimaryField text={currencyFormatter(settledCash)} />
+            <SecondaryField text={Rebalancing.settledCash} />
           </CardContent>
         </Card>
       </Box>
@@ -213,7 +210,7 @@ const Rebalancing = () => {
               </StyledTableCell>
             </TableRow>
           </TableHead>
-          <TableBody>{targetRatios.map(
+          <TableBody>{allocations.map(
             data => <AllocationRow
               key={data.symbol}
               classes={classes}
@@ -262,12 +259,12 @@ const AllocationRow = ({ classes, data, handleTargetRatio, handleActualAdjust, h
                   : null
               }
             </Box>
-            <Typography variant='caption' color='textSecondary'>{isExtra ? currencyFormatter(price) : shareText}</Typography>
+            <SecondaryField text={isExtra ? currencyFormatter(price) : shareText} />
           </Box>
         </Tooltip>
       </StyledTableCell>
       <StyledTableCell>
-        <FormatNumber type={formatType.rate} value={ratio / 100} />
+        <PrimaryField text={rateFormatter(ratio / 100)} />
       </StyledTableCell>
       <StyledTableCell>
         <TextField
@@ -285,57 +282,5 @@ const AllocationRow = ({ classes, data, handleTargetRatio, handleActualAdjust, h
         />
       </StyledTableCell>
     </TableRow>
-  )
-}
-
-const ExtraAllocationAdder = (props) => {
-  const { lang } = useLang()
-  const { ExtraAllocationAdder } = lang.Rebalancing
-  const [isFetchExtra, setIsFetchExtra] = useState(false)
-  const [extraAllocationInput, setExtraAllocationInput] = useState('')
-  const [invalidSymbols, setInvalidSymbols] = useState([])
-
-  return (
-    <Tooltip title={ExtraAllocationAdder.tooltip} arrow>
-      <TextField
-        disabled={isFetchExtra}
-        value={extraAllocationInput}
-        label={ExtraAllocationAdder.placeholder}
-        onKeyDown={
-            (e) => {
-              if (e.keyCode === enterKey) {
-                const inputSymbols = extraAllocationInput
-                  .split(',')
-                  .map(s => s.trim())
-                  .filter(s => s.length)
-                setIsFetchExtra(true)
-
-                props.fetchPrices(
-                  inputSymbols,
-                  result => {
-                    setIsFetchExtra(false)
-                    const resultSymbols = result.map(({ symbol }) => symbol)
-                    const missedSymbols = inputSymbols.filter(s => !resultSymbols.includes(s))
-                    const fetchedSymbols = inputSymbols.filter(s => resultSymbols.includes(s))
-                    setInvalidSymbols(missedSymbols)
-                    setExtraAllocationInput(fetchedSymbols.join(','))
-                  })
-              }
-            }
-          }
-        onChange={(e) => setExtraAllocationInput(e.target.value.toUpperCase())}
-        InputProps={
-          isFetchExtra
-            ? { endAdornment: <InputAdornment position='end'><CircularProgress size='1rem' /></InputAdornment> }
-            : {}
-        }
-        {...(invalidSymbols.length !== 0
-          ? {
-              error: true,
-              helperText: `${ExtraAllocationAdder.placeholder}: ${invalidSymbols.join(', ')}`
-            }
-          : {})}
-      />
-    </Tooltip>
   )
 }

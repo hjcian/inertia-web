@@ -60,8 +60,7 @@ const langs = {
         totalCost: 'Total Cost',
         unitCost: 'Unit Cost',
         price: 'Price',
-        marketValue: 'Market Value',
-        sharesText: 'shares'
+        marketValue: 'Market Value'
       },
       summaryPart: {
         title: 'Investment Overview',
@@ -82,7 +81,7 @@ const langs = {
       wantAdjust: 'Want Adjust',
       ExtraAllocationAdder: {
         tooltip: 'use comma as separator. e.g. VTI, BND',
-        placeholder: 'add allocation',
+        placeholder: 'add position',
         invalidSymbolWarning: 'invalid symbol(s):'
       }
     },
@@ -135,8 +134,7 @@ const langs = {
         totalCost: '總成本',
         unitCost: '單位成本',
         price: '價格',
-        marketValue: '市場價值',
-        sharesText: '股'
+        marketValue: '市場價值'
       },
       summaryPart: {
         title: '投資概要',
@@ -157,7 +155,7 @@ const langs = {
       wantAdjust: '實際調整',
       ExtraAllocationAdder: {
         tooltip: '使用半形逗點分隔。e.g. VTI, BND',
-        placeholder: '增加配置',
+        placeholder: '增加部位',
         invalidSymbolWarning: '查無資料：'
       }
     },

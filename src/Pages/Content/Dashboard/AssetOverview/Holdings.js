@@ -2,10 +2,10 @@ import {
   Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Paper, Typography
 } from '@material-ui/core'
 
-import Column from '../Components/Column'
+import { Column, PrimaryField } from '../Components'
 import { withStyles } from '@material-ui/core/styles'
 import { useLang } from '../../../../global/context/language'
-import { withFetching, Currency } from '../utils/common'
+import { withFetching, currencyFormatter } from '../utils/common'
 
 const StyledTableCell = withStyles((theme) => ({
   root: {
@@ -14,21 +14,19 @@ const StyledTableCell = withStyles((theme) => ({
 }))(TableCell)
 
 const HoldingRow = ({ symbol, shares, totalCost, unitCost, price, marketValue, fetching }) => {
-  const { lang } = useLang()
-  const { holdingsPart } = lang.Holdings
-  const FetchingCurrency = withFetching(Currency, fetching)
-  const shareText = `${shares.toFixed(2)} ${holdingsPart.sharesText}`
+  const { Unit } = useLang().lang
+  const FetchingPrimaryField = withFetching(PrimaryField, fetching)
+  const shareText = `${shares.toFixed(2)} ${Unit.shares}`
   return (
     <TableRow key={symbol}>
       <StyledTableCell align='left'>
-        {symbol}
-        <br />
+        <PrimaryField text={symbol} />
         <Typography variant='caption' color='textSecondary'>{shareText}</Typography>
       </StyledTableCell>
-      <StyledTableCell align='right'><Currency number={totalCost} /></StyledTableCell>
-      <StyledTableCell align='right'><Currency number={unitCost} /></StyledTableCell>
-      <StyledTableCell align='right'><FetchingCurrency number={price} /></StyledTableCell>
-      <StyledTableCell align='right'><FetchingCurrency number={marketValue} /></StyledTableCell>
+      <StyledTableCell align='right'><PrimaryField text={currencyFormatter(totalCost)} /></StyledTableCell>
+      <StyledTableCell align='right'><PrimaryField text={currencyFormatter(unitCost)} /></StyledTableCell>
+      <StyledTableCell align='right'><FetchingPrimaryField text={currencyFormatter(price)} /></StyledTableCell>
+      <StyledTableCell align='right'><FetchingPrimaryField text={currencyFormatter(marketValue)} /></StyledTableCell>
     </TableRow>
   )
 }

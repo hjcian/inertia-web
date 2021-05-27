@@ -1,11 +1,6 @@
 
 import { CircularProgress } from '@material-ui/core'
 
-export const formatType = {
-  currency: 'currency',
-  rate: 'rate'
-}
-
 const largeNum = 10000
 const largeFormatter = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -17,20 +12,9 @@ export const currencyFormatter = (number) => {
   return number > largeNum ? largeFormatter.format(number) : `$ ${number.toFixed(2)}`
 }
 
-export const Currency = ({ number }) => {
-  return (<>{number > largeNum ? largeFormatter.format(number) : `$ ${number.toFixed(2)}`}</>)
-}
-
-export const Rate = ({ number }) => {
+export const rateFormatter = (number) => {
   const rate = number * 100
-  return (<>{`${rate.toFixed(2)} %`}</>)
-}
-
-export const FormatNumber = ({ type, value }) => {
-  return (type === formatType.currency
-    ? <Currency number={value} />
-    : <Rate number={value} />
-  )
+  return `${rate.toFixed(2)} %`
 }
 
 export const withFetching = (WrappedComponent, fetching) => {

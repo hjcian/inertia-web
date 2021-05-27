@@ -1,7 +1,7 @@
 import { Box } from '@material-ui/core/'
 import { makeStyles } from '@material-ui/core/styles'
 
-import InvestmentOverview from './InvestmentOverview'
+import InvestmentSummary from './InvestmentSummary'
 import Holding from './Holdings'
 
 import { useHoldings } from '../../../../global/context/holdings'
@@ -22,7 +22,7 @@ const AssetOverview = () => {
   return (
     <Box className={classes.root}>
       <Box className={classes.part}>
-        <InvestmentOverview summary={summary} fetching={fetching} />
+        <InvestmentSummary summary={summary} fetching={fetching} />
       </Box>
       <Box className={classes.part}>
         <Holding holdings={holdings} fetching={fetching} />
