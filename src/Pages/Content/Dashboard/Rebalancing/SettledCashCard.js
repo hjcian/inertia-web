@@ -39,7 +39,7 @@ const SettledCashCard = ({ settledCash }) => {
     <>
       <Card className={classes.root}>
         <CardContent className={classes.compactCardContent}>
-          <PrimaryField className={(settledCash < 0 ? classes.insufficientBP : {})} text={currencyFormatter(settledCash)} />
+          <PrimaryField className={(settledCash < 0 ? classes.insufficientBP : null)} text={currencyFormatter(settledCash)} />
           <SecondaryField text={SettledCashCard.title} />
         </CardContent>
       </Card>
