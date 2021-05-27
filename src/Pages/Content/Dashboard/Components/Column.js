@@ -1,6 +1,6 @@
 import { Typography } from '@material-ui/core'
 
-const Column = ({ text }) => {
-  return <Typography variant='body2' color='textSecondary'>{text}</Typography>
+const Column = (props) => {
+  return <Typography {...props} variant='body2' color='textSecondary'>{props.text}</Typography>
 }
 export default Column

@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core'
 
-const SecondaryField = ({ text }) => {
-  return <Typography variant='caption' color='textSecondary'>{text}</Typography>
+const SecondaryField = (props) => {
+  return <Typography {...props} variant='caption' color='textSecondary'>{props.text}</Typography>
 }
 
 export default SecondaryField

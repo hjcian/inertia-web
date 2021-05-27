@@ -73,7 +73,6 @@ const langs = {
     },
     Rebalancing: {
       capitalInput: 'Capital Input',
-      settledCash: 'Settled Cash',
       position: 'Position',
       currentRatio: 'Current Ratio',
       targetRatio: 'Target Ratio',
@@ -81,8 +80,12 @@ const langs = {
       wantAdjust: 'Want Adjust',
       ExtraAllocationAdder: {
         tooltip: 'use comma as separator. e.g. VTI, BND',
-        placeholder: 'add position',
+        placeholder: 'add position(s)',
         invalidSymbolWarning: 'invalid symbol(s):'
+      },
+      SettledCashCard: {
+        title: 'Settled Cash',
+        warn: 'Buying power is insufficient!'
       }
     },
     Footer: {
@@ -157,6 +160,10 @@ const langs = {
         tooltip: '使用半形逗點分隔。e.g. VTI, BND',
         placeholder: '增加部位',
         invalidSymbolWarning: '查無資料：'
+      },
+      SettledCashCard: {
+        title: '調整後現金結餘',
+        warn: '購買力不足！'
       }
     },
     Footer: {

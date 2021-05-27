@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core'
 
-const PrimaryField = ({ text }) => {
-  return <Typography variant='body2' color='textPrimary'>{text}</Typography>
+const PrimaryField = (props) => {
+  return <Typography {...props} variant='body2' color='textPrimary'>{props.text}</Typography>
 }
 
 export default PrimaryField

@@ -1,10 +1,11 @@
 import { useEffect, useState } from 'react'
 import {
-  Tooltip, Box, Card, CardContent, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, CircularProgress, InputAdornment, IconButton
+  Tooltip, Box, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, IconButton
 } from '@material-ui/core'
 import { makeStyles, withStyles } from '@material-ui/core/styles'
 import DeleteIcon from '@material-ui/icons/Delete'
 import ExtraAllocationAdder from './ExtraAllocationAdder'
+import SettledCashCard from './SettledCashCard'
 import { Column, PrimaryField, SecondaryField } from '../Components'
 import { currencyFormatter, rateFormatter } from '../utils/common'
 import { FetchPrices } from '../../../../utils/fetch.mjs'
@@ -52,12 +53,7 @@ const useStyles = makeStyles({
   deleteIcon: {
     fontSize: '1rem'
   },
-  compactCardContent: {
-    padding: '0.5rem 0.8rem', // default is too much
-    '&:last-child': {
-      paddingBottom: '0.5rem' // default is too much
-    }
-  },
+
   targetInputField: {
     width: '3rem'
   },
@@ -182,12 +178,7 @@ const Rebalancing = () => {
     <div className={classes.root}>
       <Box className={classes.infoContainer}>
         <TextField className={classes.infoBox} value={capitalInput} error={capitalInput === ''} label={Rebalancing.capitalInput} onChange={handleCapitalInput} type='number' />
-        <Card className={classes.infoBox}>
-          <CardContent className={classes.compactCardContent}>
-            <PrimaryField text={currencyFormatter(settledCash)} />
-            <SecondaryField text={Rebalancing.settledCash} />
-          </CardContent>
-        </Card>
+        <SettledCashCard settledCash={settledCash} />
       </Box>
       <TableContainer className={classes.infoContainer} component={Paper}>
         <Table aria-label='simple table'>
