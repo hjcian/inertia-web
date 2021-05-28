@@ -9,6 +9,7 @@
   - [實際調整](#實際調整)
 - [4. 結尾](#4-結尾)
 
+---
 ### 0. 使用測試資料
 
 若你還沒準備好你的交易紀錄檔，可下載[此檔案](https://raw.githubusercontent.com/hjcian/inertia-web/main/test/firstrade.csv)來試操作此網頁工具。檔案需另存成 `.csv` 檔，避免無預期的錯誤。
