@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { makeStyles } from '@material-ui/core/styles'
 import { CssBaseline, Typography, Button, Box } from '@material-ui/core'
+import WarnSnackBar from '../../../global/Components/WarningSnackbar'
 import StepCard from './StepCard'
 import { useLang } from '../../../global/context/language'
 import { useHoldings } from '../../../global/context/holdings'
@@ -38,19 +39,31 @@ const useStyles = makeStyles((theme) => ({
 const LandingPage = () => {
   const { updateValue: updateHoldings } = useHoldings()
   const classes = useStyles()
-  const { lang } = useLang()
-  const { LandingPage } = lang
-  const { steps } = LandingPage
+  const { LandingPage } = useLang().lang
+
+  const [openInvalidDataWarn, setOpenInvalidDataWarn] = useState(false)
 
   const handleFiles = (e) => {
     const file = e.target.files[0]
     const reader = new FileReader()
 
-    reader.onabort = () => console.log('file reading was aborted')
-    reader.onerror = () => console.log('file reading has failed')
+    reader.onabort = () => {
+      console.log('file reading was aborted')
+      setOpenInvalidDataWarn(true)
+    }
+    reader.onerror = () => {
+      console.log('file reading has failed')
+      setOpenInvalidDataWarn(true)
+    }
+
     reader.onload = () => {
       const string = reader.result
       const calculator = ParseFromString(string)
+      if (calculator === null) {
+        console.log('invalid data')
+        setOpenInvalidDataWarn(true)
+        return
+      }
 
       // fetch prices and update it via async call
       FetchPrices(calculator.GetSymbols())
@@ -73,9 +86,18 @@ const LandingPage = () => {
         fetching: true
       })
     }
-    reader.readAsText(file)
-  }
 
+    reader.onloadend = () => {
+      e.target.value = '' // onchange event needed: https://stackoverflow.com/a/30357800/8694937
+      console.log('load end')
+    }
+    try {
+      reader.readAsText(file, 'utf-8')
+    } catch (error) {
+      console.log('(readAsText error) invalid data')
+      setOpenInvalidDataWarn(true)
+    }
+  }
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -87,7 +109,7 @@ const LandingPage = () => {
         <Box>{LandingPage.subDesc}</Box>
       </Typography>
       <div className={classes.stepsContainer}>
-        {steps.map(info => <StepCard key={info.title} info={info} />)}
+        {LandingPage.steps.map(info => <StepCard key={info.title} info={info} />)}
       </div>
       <input
         accept='text/csv,text/plain,application/vnd.ms-excel'
@@ -102,6 +124,7 @@ const LandingPage = () => {
           {LandingPage.uploadButton}
         </Button>
       </label>
+      <WarnSnackBar warnText={LandingPage.invalidDataWarnText} isOpen={openInvalidDataWarn} closer={setOpenInvalidDataWarn} />
     </div>
   )
 }

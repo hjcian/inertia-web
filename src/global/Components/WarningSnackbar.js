@@ -3,14 +3,21 @@ import { Alert } from '@material-ui/lab'
 
 const autoHideDuration = 6000 // ms
 
-const WarnSnackBar = ({ warnText, open, onClose }) => {
+const WarnSnackBar = ({ warnText, isOpen, closer }) => {
+  const handleClose = (event, reason) => {
+    if (reason === 'clickaway') {
+      return
+    }
+    closer(false)
+  }
+
   return (
     <Snackbar
-      open={open}
+      open={isOpen}
       autoHideDuration={autoHideDuration}
-      onClose={onClose}
+      onClose={handleClose}
     >
-      <Alert onClose={onClose} severity='error'>
+      <Alert onClose={handleClose} severity='error'>
         {warnText}
       </Alert>
     </Snackbar>

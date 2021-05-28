@@ -28,13 +28,6 @@ const SettledCashCard = ({ settledCash }) => {
 
   useEffect(() => setOpenBPInsufficientWarn(settledCash < 0), [settledCash])
 
-  const handleClose = (event, reason) => {
-    if (reason === 'clickaway') {
-      return
-    }
-    setOpenBPInsufficientWarn(false)
-  }
-
   return (
     <>
       <Card className={classes.root}>
@@ -43,7 +36,7 @@ const SettledCashCard = ({ settledCash }) => {
           <SecondaryField text={SettledCashCard.title} />
         </CardContent>
       </Card>
-      <WarnSnackBar warnText={SettledCashCard.warn} open={openBPInsufficientWarn} onClose={handleClose} />
+      <WarnSnackBar warnText={SettledCashCard.warn} isOpen={openBPInsufficientWarn} closer={setOpenBPInsufficientWarn} />
     </>
   )
 }

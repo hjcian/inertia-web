@@ -51,7 +51,8 @@ const langs = {
           imageURL: process.env.PUBLIC_URL + 'assets/report.svg'
         }
       ],
-      uploadButton: 'Upload your transaction file'
+      uploadButton: 'Upload your transaction file',
+      invalidDataWarnText: 'Unexpected data format. currently supported securities: Firstrade'
     },
     Holdings: {
       holdingsPart: {
@@ -128,7 +129,8 @@ const langs = {
           imageURL: process.env.PUBLIC_URL + 'assets/report.svg'
         }
       ],
-      uploadButton: '上傳你的交易紀錄檔'
+      uploadButton: '上傳你的交易紀錄檔',
+      invalidDataWarnText: '不預期的資料格式。目前支援的券商：Firstrade'
     },
     Holdings: {
       holdingsPart: {
