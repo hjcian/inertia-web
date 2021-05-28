@@ -4,6 +4,7 @@ import {
   Select,
   MenuItem,
   IconButton,
+  Button,
   Tooltip
 } from '@material-ui/core'
 import GitHubIcon from '@material-ui/icons/GitHub'
@@ -34,8 +35,6 @@ const useStyles = makeStyles((theme) => ({
   selectLangItem: {
     fontSize: '0.8rem'
   },
-  githubButton: {
-  },
   githubIcon: {
     color: '#1864ab'
   }
@@ -54,6 +53,20 @@ const Header = () => {
               <img className={classes.brandImage} src={logo} alt={Header.brand} />
             </a>
           </div>
+          <Button
+            href='https://github.com/hjcian/inertia-web/tree/main/doc/usage#readme'
+            target='_blank'
+            rel='noreferrer'
+          >
+            {Header.usage}
+          </Button>
+          <Button
+            href='https://github.com/hjcian/inertia-web/tree/main/doc/faq#readme'
+            target='_blank'
+            rel='noreferrer'
+          >
+            {Header.faq}
+          </Button>
           <Select
             disableUnderline
             className={classes.selectLang}
@@ -71,7 +84,6 @@ const Header = () => {
           </Select>
           <Tooltip title='Github' arrow>
             <IconButton
-              className={classes.githubButton}
               href='https://github.com/hjcian/inertia-web'
               target='_blank' rel='noreferrer'
             >

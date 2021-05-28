@@ -21,7 +21,9 @@ const langs = {
   [en]: {
     Code: en,
     Header: {
-      brand: 'InertIA'
+      brand: 'InertIA',
+      usage: 'Usage',
+      faq: 'FAQ'
     },
     Content: {
       dropzoneDragActive: 'Drop the transaction CSV file here ...',
@@ -100,7 +102,9 @@ const langs = {
   [zhtw]: {
     Code: zhtw,
     Header: {
-      brand: 'InertIA'
+      brand: 'InertIA',
+      usage: '使用範例',
+      faq: '常見問題'
     },
     Content: {
       dropzoneDragActive: '放開你的交易紀錄 CSV 檔...',
