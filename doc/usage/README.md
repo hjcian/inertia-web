@@ -18,18 +18,18 @@
 
 [點擊按鈕](https://inertia-web.netlify.app/)上傳交易紀錄檔：
 
-![click button](https://i.imgur.com/UwmterE.jpg)
+<img width='720px' src="https://i.imgur.com/UwmterE.jpg"/>
 
 ---
 ### 2. 觀看資產概要
 
 上傳成功後，可看到資產概要：
 
-![asset overview](https://i.imgur.com/9mfgwMc.jpg)
+<img width='720px' src="https://i.imgur.com/9mfgwMc.jpg"/>
 
-此時，你可能會看到許多資料還在讀取中，最長可能需要等待 30 秒。稍待片刻後會得到你的資產總市場價值、簡單報酬率、年化報酬率、各股價格及該股票的目前市場價值：
+此時，你可能會看到許多資料還在讀取中，最長可能需要等待 30 秒。稍待片刻後會得到你的資產`總市場價值`、`簡單報酬率`、`年化報酬率`、各股`價格`及該股票的目前`市場價值`：
 
-![asset overview (updated)](https://i.imgur.com/s3RI86T.png)
+<img width='720px' src="https://i.imgur.com/s3RI86T.jpg"/>
 
 
 ---
@@ -37,8 +37,7 @@
 
 點擊`再平衡試算`，可看到各股票的配置比例：
 
-![](https://i.imgur.com/iyywxOD.jpg)
-
+<img width='720px' src="https://i.imgur.com/iyywxOD.jpg"/>
 
 #### 此次投入金額
 
@@ -50,7 +49,7 @@
 
 見下圖：
 
-![](https://i.imgur.com/PF9vpa7.jpg)
+<img width='720px' src="https://i.imgur.com/PF9vpa7.jpg"/>
 
 
 #### 目標配置
@@ -60,7 +59,7 @@
 
 此時可以看到，`BND` 應在此次 ***`購入`*** `38 股`、`VT` 則會需要 ***`賣出`*** `39 股`，`BNDX` 則是需要 ***`購入`*** `57 股`：
 
-![](https://i.imgur.com/NwMwEZb.jpg)
+<img width='720px' src="https://i.imgur.com/NwMwEZb.jpg"/>
 
 
 #### 增加部位
@@ -69,11 +68,12 @@
 
 故假設今天我想要增加 `VNQI`*（Vanguard 全球不含美國房地產 ETF）*，就在此欄位填入股票代號後按 enter：
 
-![](https://i.imgur.com/CvMoHeO.jpg)
+<img width='720px' src="https://i.imgur.com/CvMoHeO.jpg"/>
+
 
 稍待伺服器抓取完報價，就會在表格中出現新的配置及它的目前報價：
 
-![](https://i.imgur.com/RbMBr7s.jpg)
+<img width='720px' src="https://i.imgur.com/RbMBr7s.jpg"/>
 
 #### 實際調整
 
@@ -83,7 +83,7 @@
 
 然後你可以直接將`實際調整`修改成建議的`應調整`股數，可以看到帳戶餘額用得差不多、剩下 `80.6` 元：
 
-![](https://i.imgur.com/M3MV5PJ.jpg)
+<img width='720px' src="https://i.imgur.com/M3MV5PJ.jpg"/>
 
 
 ---
