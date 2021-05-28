@@ -13,6 +13,9 @@ Visit the InertIA 👉 https://inertia-web.netlify.app/
 - 操作
   - 提供再平衡試算
 
+## ❓ FAQ
+- 👉 [FAQ](doc/faq/)
+
 ## 🏗️ 架構/使用的技術/函式庫
 - 前端 (web)
   - hosting on [Netlify](https://www.netlify.com/) - 部署快速輕鬆不費力
