@@ -42,6 +42,7 @@ Visit the InertIA 👉 https://inertia-web.netlify.app/
 - Illustrations:
   - https://themeisle.com/illustrations/
   - https://undraw.co/illustrations
+- Icons: https://icons8.com/icons
 
 ## 誤差
 - DIVIDEND 的資料對不起來
